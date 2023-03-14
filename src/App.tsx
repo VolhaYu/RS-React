@@ -1,27 +1,16 @@
 import About from './pages/About';
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
-import Main from './pages/main';
+import { HashRouter, Route, Router, Routes } from 'react-router-dom';
+import Main from './pages/Home';
 import NotFound from './pages/NotFound';
-import Header from './components/header';
+import Header from './components/header/header';
+import RouterPage from './components/router';
 
 export function App() {
   return (
     <>
-    <Header />
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/about" element={<About />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+      <Header />
+      <RouterPage />
     </>
-  );
-}
-
-export function WrappedApp() {
-  return (
-    <HashRouter>
-      <App />
-    </HashRouter>
   );
 }
