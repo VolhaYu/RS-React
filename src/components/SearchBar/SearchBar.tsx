@@ -1,17 +1,18 @@
 import React from "react";
-import { Props } from "../../types";
+import { Props, PageState } from "../../types";
 import './searchBar.css';
 
-class SearchBar extends React.Component {
+class SearchBar extends React.Component<Props> {
   constructor (props: Props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {
+      value: '',
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event: React.FocusEvent<HTMLInputElement>) {
-    console.log(event.target.value);
     this.setState({value: event.target.value});
     localStorage.setItem("inputValue", event.target.value);
   }
@@ -29,7 +30,7 @@ class SearchBar extends React.Component {
         <input className="form__input" type="text" value={localStorage.getItem("inputValue") || ''}
           onChange={this.handleChange}
         />
-        <button className="form__button" type="submit">Submit</button>
+        <button className="form__button" type="submit">Search</button>
       </form>
     );
   }

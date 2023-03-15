@@ -2,20 +2,39 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import { App, WrappedApp } from './App';
+import { App } from './App';
 import React from 'react';
 
 describe('App', () => {
-  it('Renders hello world', () => {
+  it('Renders Home Pages', () => {
     // ARRANGE
-    render(<WrappedApp />);
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />      
+      </MemoryRouter>
+    );
     // ACT
     // EXPECT
     expect(
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('Hello World');
+    ).toHaveTextContent('Home Pages');
+  });
+  it('Renders About Pages', () => {
+    // ARRANGE
+    render(
+      <MemoryRouter initialEntries={['/about']}>
+        <App />      
+      </MemoryRouter>
+    );
+    // ACT
+    // EXPECT
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+      })
+    ).toHaveTextContent('About Pages');
   });
   it('Renders not found if invalid path', () => {
     render(
@@ -27,6 +46,6 @@ describe('App', () => {
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('Not Found');
+    ).toHaveTextContent('404');
   });
 });
