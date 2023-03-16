@@ -10,7 +10,7 @@ class Header extends React.Component<Props, PageState> {
     this.state = {
       page: localStorage.getItem('page') || 'Home'
     };  
-    this.changeValue = this.changeValue.bind(this);   
+    this.changeValue = this.changeValue.bind(this);  
   }
 
   changeValue(e: React.MouseEvent) {
@@ -28,10 +28,10 @@ class Header extends React.Component<Props, PageState> {
     return (
       <header className="header">
         <h2>{this.state.page}</h2>
-        <div className="wrap-links">
+        <nav className="wrap-links">
           <NavLink onClick={this.changeValue} className="link" to="/home">Home</NavLink>
           <NavLink onClick={this.changeValue} className="link" to="/about">About</NavLink>
-        </div>
+        </nav>
       </header>
     ) ;   
   }

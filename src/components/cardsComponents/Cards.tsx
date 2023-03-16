@@ -13,7 +13,6 @@ class Cards extends React.Component<Products> {
     return (
       <div className="wrap-cards">
         {products.map((product) => 
-          <>
             <Card 
               thumbnail={product.thumbnail}
               title={product.title}
@@ -24,7 +23,6 @@ class Cards extends React.Component<Products> {
               discountPercentage={product.discountPercentage}
               key={product.id} 
             />
-          </>       
         )}
       </div>
     )
