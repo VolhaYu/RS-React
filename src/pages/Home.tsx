@@ -1,6 +1,6 @@
-import SearchBar from "../components/SearchBar/SearchBar";
-import React from "react";
-import Cards from "../components/cardsComponents/Cards";
+import React from 'react';
+import SearchBar from '../components/SearchBar/SearchBar';
+import Cards from '../components/cardsComponents/Cards';
 
 function Home() {
   return (

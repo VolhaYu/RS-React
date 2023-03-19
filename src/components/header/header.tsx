@@ -1,39 +1,44 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './header.css';
-import { PageState, Props } from "../../types";
-
+import { PageState, Props } from '../../types';
 
 class Header extends React.Component<Props, PageState> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      page: localStorage.getItem('page') || 'Home'
-    };  
-    this.changeValue = this.changeValue.bind(this);  
+      page: localStorage.getItem('page') || 'Home',
+    };
+    this.changeValue = this.changeValue.bind(this);
   }
 
   changeValue(e: React.MouseEvent) {
-    let value: string = '';    
+    const { page } = this.state;
+    let value = '';
     if (e.currentTarget.textContent) {
       value = e.currentTarget.textContent;
     }
-    this.setState(({page}) => ({
-      page: value || this.state.page
+    this.setState(() => ({
+      page: value || page,
     }));
     localStorage.setItem('page', value);
   }
 
   render(): React.ReactNode {
+    const { page } = this.state;
     return (
       <header className="header">
-        <h2>{this.state.page}</h2>
+        <h2>{page}</h2>
         <nav className="wrap-links">
-          <NavLink onClick={this.changeValue} className="link" to="/home">Home</NavLink>
-          <NavLink onClick={this.changeValue} className="link" to="/about">About</NavLink>
+          <NavLink onClick={this.changeValue} className="link" to="/">
+            Home
+          </NavLink>
+          <NavLink onClick={this.changeValue} className="link" to="/about">
+            About
+          </NavLink>
         </nav>
       </header>
-    ) ;   
+    );
   }
 }
 export default Header;

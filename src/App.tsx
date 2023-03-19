@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/header/header';
 import RouterPage from './components/router';
 
-export function App() {
+function App() {
   return (
     <>
       <Header />
@@ -10,3 +10,5 @@ export function App() {
     </>
   );
 }
+
+export default App;

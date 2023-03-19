@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function About() {
   return <h1 className="center">About Pages</h1>;

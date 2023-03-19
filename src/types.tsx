@@ -1,8 +1,8 @@
 export type PageState = {
-  page: string,
+  page: string;
 };
 
-export type Props = {};
+export type Props = object;
 
 export interface Products {
   id?: number;

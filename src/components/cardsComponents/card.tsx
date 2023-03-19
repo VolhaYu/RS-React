@@ -1,27 +1,25 @@
-import React from "react";
-import { Products } from "types";
-import CardDescription from "./cardDescription";
-import ImageCard from "./imageCard";
+import React from 'react';
+import { Products } from 'types';
+import CardDescription from './cardDescription';
+import ImageCard from './imageCard';
 
 class Card extends React.Component<Products> {
-  constructor(props: Products) {
-    super(props);
-  }
   render() {
+    const { thumbnail, id, title, brand, category, price, rating, discountPercentage } = this.props;
     return (
-      <div className="card-product">
-        <ImageCard thumbnail={this.props.thumbnail} key={this.props.id} />
+      <div className="card-product" data-testid="card-product-item">
+        <ImageCard thumbnail={thumbnail} key={id} />
         <CardDescription
-          title={this.props.title}
-          brand={this.props.brand} 
-          category={this.props.category}
-          price={this.props.price}
-          rating={this.props.rating}
-          discountPercentage={this.props.discountPercentage}
-          key={this.props.id} 
+          title={title}
+          brand={brand}
+          category={category}
+          price={price}
+          rating={rating}
+          discountPercentage={discountPercentage}
+          key={id}
         />
       </div>
-    )
+    );
   }
 }
 
