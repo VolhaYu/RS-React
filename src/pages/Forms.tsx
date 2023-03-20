@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from '../components/Form/form';
+import Form from '../components/FormComponent/form';
 
-function Forms() {
+function FormsPage() {
   return (
     <main>
       <h1 className="center">Form Pages</h1>
@@ -10,4 +10,4 @@ function Forms() {
   );
 }
 
-export default Forms;
+export default FormsPage;

@@ -48,6 +48,7 @@ module.exports = {
     'react/prefer-stateless-function': 0,
     'dot-notation': 'off',
     '@typescript-eslint/dot-notation': 'error',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
   settings: {
     react: {

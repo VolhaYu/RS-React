@@ -1,0 +1,17 @@
+.form-component {
+  padding: 5px;
+}
+.input {
+  display: block;
+  margin: 5px;
+}
+.input-checkbox {
+  display: inline;
+}
+.h3 {
+  margin: 0;
+}
+.label-checkbox,
+.label {
+  display: block;
+}

@@ -4,6 +4,10 @@ export type PageState = {
 
 export type Props = object;
 
+export type FormType = {
+  label: string;
+};
+
 export interface Products {
   id?: number;
   title?: string;
