@@ -36,6 +36,9 @@ class Header extends React.Component<Props, PageState> {
           <NavLink onClick={this.changeValue} className="link" to="/about">
             About
           </NavLink>
+          <NavLink onClick={this.changeValue} className="link" to="/form">
+            Form
+          </NavLink>
         </nav>
       </header>
     );
