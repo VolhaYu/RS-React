@@ -1,11 +1,20 @@
 export type PageState = {
   page: string;
 };
+export interface RefObject<T> {
+  readonly current: T | null;
+}
 
 export type Props = object;
 
-export type FormType = {
-  label: string;
+export type PropsFormType = {
+  label?: string;
+  name?: string;
+  surName?: string;
+  birthday?: string;
+  file?: string;
+  scill?: string;
+  count?: number;
 };
 
 export interface Products {
