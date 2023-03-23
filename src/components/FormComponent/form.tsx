@@ -7,16 +7,28 @@ import InputFile from './inputFile';
 import InputRadio from './inputRadio';
 import InputSelect from './inputSelect';
 import InputText from './inputText';
-import { Props, PropsFormType } from '../../types';
+import { Props, PropsFormType, DataArray } from '../../types';
 import CardOfData from '../cardOfData/cardOfData';
 
-type Obj = {
-  nameFirst?: string;
-  nameLast?: string;
+export const dataArray: DataArray[] = [
+  {
+    id: 0,
+    nameFirst: 'Volha',
+    nameLast: 'Yurc',
+    birthday: '17.01.1993',
+    avatar: 'file.pdf',
+    select: 'Minsk',
+    html: 'HTML',
+    css: 'CSS',
+    js: 'JS',
+    react: 'REACT',
+  },
+];
+type State = {
+  isValide: boolean;
 };
 
-export const dataListCard: Obj = {};
-class Form extends React.Component {
+class Form extends React.Component<Props, { isValide: boolean }> {
   private inputName = createRef<InputText>();
 
   private inputSurName = createRef<InputText>();
@@ -37,10 +49,10 @@ class Form extends React.Component {
 
   private inputRadio = createRef<InputRadio>();
 
-  // constructor(props: PropsFormType) {
+  // constructor(props: Props) {
   //   super(props);
   //   this.state = {
-  //     count: 0,
+  //     isValide: false,
   //   };
   // }
 
@@ -48,8 +60,6 @@ class Form extends React.Component {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-    dataListCard.nameFirst = `${this.inputName.current!.hendleInput()}`;
-    dataListCard.nameLast = `${this.inputName.current!.hendleInput()}`;
     const dataList = {
       nameFirst: this.inputName.current!.hendleInput(),
       nameLast: this.inputSurName.current!.hendleInput(),
@@ -62,11 +72,8 @@ class Form extends React.Component {
       react: this.inputCheckbox4.current!.hendleInput(),
       radio: this.inputRadio.current!.hendleInput(),
     };
-    console.log(dataListCard, dataList);
-    // this.setState(({ count }) => ({
-    //   count: count + 1,
-    // }));
-    return <CardOfData name={dataListCard.nameFirst} surName={dataListCard.nameLast} />;
+    dataArray.push(dataList);
+    console.log(dataArray, dataList);
   };
 
   render() {

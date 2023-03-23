@@ -1,5 +1,12 @@
-.div-data {
-  min-width: 100px;
+.wrap-card {
+  width: 100%;
   min-height: 100px;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  
+}
+.one-card {
   background-color: brown;
+  padding: 5px;
 }

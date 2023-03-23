@@ -14,7 +14,12 @@ export type PropsFormType = {
   birthday?: string;
   file?: string;
   scill?: string;
-  count?: number;
+  city?: string;
+  HTML?: string;
+  CSS?: string;
+  JS?: string;
+  REACT?: string;
+  radio?: string;
 };
 
 export interface Products {
@@ -29,4 +34,17 @@ export interface Products {
   category?: string;
   thumbnail?: string;
   images?: string[];
+}
+export interface DataArray {
+  id?: number;
+  nameFirst?: string;
+  nameLast?: string;
+  birthday?: string;
+  avatar?: string;
+  select?: string;
+  html?: string;
+  css?: string;
+  js?: string;
+  react?: string;
+  radio?: string;
 }
