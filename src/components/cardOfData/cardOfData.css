@@ -16,3 +16,9 @@
 .img-card {
   max-width: 100px;
 }
+
+.massage-h2 {
+  position: fixed;
+  left: 45%;
+  top: 45%;
+}

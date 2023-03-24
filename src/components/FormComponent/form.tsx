@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React, { createRef } from 'react';
 import Button from './button';
 import './form.css';
@@ -8,12 +7,11 @@ import InputFile from './inputFile';
 import InputRadio from './inputRadio';
 import InputSelect from './inputSelect';
 import InputText from './inputText';
-import { Props, PropsFormType, DataArray } from '../../types';
-import CardsData from '../cardOfData/cardsData';
+import { Props, State } from '../../types';
+import CardsData, { dataArray } from '../cardOfData/cardsData';
+import Message from '../cardOfData/Message';
 
-export const dataArray: DataArray[] = [];
-
-class Form extends React.Component<Props, { isValidate: boolean }> {
+class Form extends React.Component<Props, State> {
   private inputName = createRef<InputText>();
 
   private inputSurName = createRef<InputText>();
@@ -34,14 +32,20 @@ class Form extends React.Component<Props, { isValidate: boolean }> {
 
   private inputRadio = createRef<InputRadio>();
 
+  private form = createRef<HTMLFormElement>();
+
   constructor(props: Props) {
     super(props);
     this.handleValidate = this.handleValidate.bind(this);
-    this.state = { isValidate: false };
+    this.hiddenMessage = this.hiddenMessage.bind(this);
+    this.state = {
+      isValidate: false,
+      isHidden: false,
+    };
   }
 
   handleValidate() {
-    this.setState({ isValidate: true });
+    this.setState({ isValidate: true, isHidden: true });
   }
 
   handleSubmit: React.FormEventHandler<HTMLFormElement> = (
@@ -52,7 +56,7 @@ class Form extends React.Component<Props, { isValidate: boolean }> {
       nameFirst: this.inputName.current!.hendleInput(),
       nameLast: this.inputSurName.current!.hendleInput(),
       birthday: this.inputDate.current!.hendleInput(),
-      avatar: this.inputFile.current!.hendleInput(),
+      avatar: this.inputFile.current!.hendleInput() as string,
       select: this.inputSelect.current!.hendleInput(),
       html: this.inputCheckbox1.current!.hendleInput() ? 'HTML' : '',
       css: this.inputCheckbox2.current!.hendleInput() ? 'CSS' : '',
@@ -60,25 +64,34 @@ class Form extends React.Component<Props, { isValidate: boolean }> {
       react: this.inputCheckbox4.current!.hendleInput() ? 'REACT' : '',
       radio: this.inputRadio.current!.hendleInput(),
     };
-    dataArray.push(dataList);
-    console.log(dataArray, dataList.avatar);
+    if (dataList) {
+      dataArray.push(dataList);
+    }
     this.handleValidate();
-    const { isValidate } = this.state;
-    console.log(isValidate);
-    // alert('Карточка создалась!');
+    this.hiddenMessage();
+    this.form.current!.reset();
   };
 
+  hiddenMessage() {
+    setTimeout(() => {
+      this.setState({ isHidden: false });
+    }, 2000);
+  }
+
   render() {
-    const { isValidate } = this.state;
-    let card;
+    const { isValidate, isHidden } = this.state;
+    let card: React.ReactNode;
+    let message: React.ReactNode;
     if (isValidate) {
       card = <CardsData />;
-    } else {
-      card = null;
+      message = <Message />;
+    }
+    if (!isHidden) {
+      message = null;
     }
     return (
       <>
-        <form onSubmit={this.handleSubmit} className="form-component">
+        <form onSubmit={this.handleSubmit} className="form-component" ref={this.form}>
           <InputText label="Name:" name="inputName" ref={this.inputName} />
           <InputText label="SurName:" name="inputSurName" ref={this.inputSurName} />
           <InputDate ref={this.inputDate} />
@@ -93,6 +106,7 @@ class Form extends React.Component<Props, { isValidate: boolean }> {
           <Button />
         </form>
         {card}
+        {message}
       </>
     );
   }

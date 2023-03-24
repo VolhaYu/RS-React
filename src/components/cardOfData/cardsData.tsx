@@ -1,14 +1,12 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { dataArray } from '../FormComponent/form';
 import { DataArray } from '../../types';
 import OneCard from './oneCard';
 import './cardOfData.css';
 
+export const dataArray: DataArray[] = [];
 class CardsData extends React.Component<DataArray> {
   render() {
-    console.log(dataArray);
     return (
       <>
         <h2>Cards:</h2>

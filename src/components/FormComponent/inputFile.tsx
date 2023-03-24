@@ -11,7 +11,6 @@ class InputFile extends React.Component {
 
   hendleInput() {
     const fileInput = this.fileRef.current?.files;
-    console.log(fileInput);
     return fileInput ? URL.createObjectURL(fileInput[0]) : fileInput;
   }
 

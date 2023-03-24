@@ -36,11 +36,10 @@ export interface Products {
   images?: string[];
 }
 export interface DataArray {
-  id?: number;
   nameFirst?: string;
   nameLast?: string;
   birthday?: string;
-  avatar?: string | null;
+  avatar?: string;
   select?: string;
   html?: string;
   css?: string;
@@ -48,3 +47,9 @@ export interface DataArray {
   react?: string;
   radio?: boolean;
 }
+
+export type State = {
+  isValidate: boolean;
+  isHidden: boolean;
+  message?: React.ReactNode | null;
+};
