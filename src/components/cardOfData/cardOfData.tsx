@@ -9,10 +9,9 @@ class CardOfData extends React.Component<PropsFormType> {
         <p className="data-text">
           {name} {surName}
         </p>
-        <p className="data-text">
-          {birthday} {city}
-        </p>
-        <img src={file} alt="avatar" />
+        <p className="data-text">Birthday: {birthday}</p>
+        <p className="data-text">City: {city}</p>
+        <img className="img-card" src={file} alt="avatar" />
         <h3>Scills:</h3>
         <p>
           {HTML} {CSS} {JS} {REACT}

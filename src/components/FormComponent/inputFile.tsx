@@ -10,15 +10,23 @@ class InputFile extends React.Component {
   }
 
   hendleInput() {
-    const fileInput = this.fileRef.current.files[0].name;
-    return fileInput;
+    const fileInput = this.fileRef.current?.files;
+    console.log(fileInput);
+    return fileInput ? URL.createObjectURL(fileInput[0]) : fileInput;
   }
 
   render() {
     return (
       <label>
         Avatar:
-        <input type="file" name="file" className="input" ref={this.fileRef} required />
+        <input
+          type="file"
+          name="file"
+          className="input"
+          accept="image/png, image/jpeg"
+          ref={this.fileRef}
+          required
+        />
       </label>
     );
   }

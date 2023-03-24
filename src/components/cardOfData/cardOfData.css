@@ -7,6 +7,12 @@
   
 }
 .one-card {
-  background-color: brown;
+  background-color: rgb(204 186 186);
   padding: 5px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 10px;
+}
+.img-card {
+  max-width: 100px;
 }

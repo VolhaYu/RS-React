@@ -40,7 +40,7 @@ export interface DataArray {
   nameFirst?: string;
   nameLast?: string;
   birthday?: string;
-  avatar?: string;
+  avatar?: string | null;
   select?: string;
   html?: string;
   css?: string;

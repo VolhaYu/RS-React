@@ -61,7 +61,7 @@ class Form extends React.Component<Props, { isValidate: boolean }> {
       radio: this.inputRadio.current!.hendleInput(),
     };
     dataArray.push(dataList);
-    console.log(dataArray);
+    console.log(dataArray, dataList.avatar);
     this.handleValidate();
     const { isValidate } = this.state;
     console.log(isValidate);
