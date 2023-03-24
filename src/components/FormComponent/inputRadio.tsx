@@ -11,7 +11,7 @@ class InputRadio extends React.Component<PropsFormType> {
 
   hendleInput() {
     const radioInput = this.radioRef.current;
-    return radioInput?.value;
+    return radioInput?.checked;
   }
 
   render() {

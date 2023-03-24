@@ -1,4 +1,5 @@
-/* eslint-disable array-callback-return */
+/* eslint-disable import/no-cycle */
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { dataArray } from '../FormComponent/form';
 import { DataArray } from '../../types';
@@ -7,7 +8,6 @@ import './cardOfData.css';
 
 class CardsData extends React.Component<DataArray> {
   render() {
-    // const {nameFirst, nameLast, birthday, select, avatar, html, css, js, r } = this.props;
     console.log(dataArray);
     return (
       <>
@@ -16,7 +16,6 @@ class CardsData extends React.Component<DataArray> {
           {dataArray.map((data, ind) => {
             return (
               <OneCard
-                // eslint-disable-next-line react/no-array-index-key
                 key={ind}
                 name={data.nameFirst}
                 surName={data.nameLast}

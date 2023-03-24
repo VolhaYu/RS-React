@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import { Props } from '../../types';
 import './searchBar.css';
@@ -23,9 +24,7 @@ class SearchBar extends React.Component<Props, { value: string }> {
   }
 
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    const { value } = this.state;
     e.preventDefault();
-    console.log(value);
   }
 
   render(): React.ReactNode {

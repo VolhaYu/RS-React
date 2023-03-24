@@ -46,5 +46,5 @@ export interface DataArray {
   css?: string;
   js?: string;
   react?: string;
-  radio?: string;
+  radio?: boolean;
 }

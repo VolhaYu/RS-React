@@ -11,7 +11,7 @@ class InputCheckbox extends React.Component<PropsFormType> {
 
   hendleInput() {
     const checkboxInput = this.checkboxRef.current;
-    return checkboxInput?.value;
+    return checkboxInput?.checked;
   }
 
   render() {

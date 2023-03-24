@@ -1,5 +1,4 @@
 import React from 'react';
-import CardsData from '../components/cardOfData/cardsData';
 import Form from '../components/FormComponent/form';
 
 function FormsPage() {
@@ -7,7 +6,6 @@ function FormsPage() {
     <main>
       <h1 className="center">Form Pages</h1>
       <Form />
-      <CardsData />
     </main>
   );
 }

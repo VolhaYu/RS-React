@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { createRef } from 'react';
 import Button from './button';
 import './form.css';
@@ -8,27 +9,11 @@ import InputRadio from './inputRadio';
 import InputSelect from './inputSelect';
 import InputText from './inputText';
 import { Props, PropsFormType, DataArray } from '../../types';
-import CardOfData from '../cardOfData/cardOfData';
+import CardsData from '../cardOfData/cardsData';
 
-export const dataArray: DataArray[] = [
-  {
-    id: 0,
-    nameFirst: 'Volha',
-    nameLast: 'Yurc',
-    birthday: '17.01.1993',
-    avatar: 'file.pdf',
-    select: 'Minsk',
-    html: 'HTML',
-    css: 'CSS',
-    js: 'JS',
-    react: 'REACT',
-  },
-];
-type State = {
-  isValide: boolean;
-};
+export const dataArray: DataArray[] = [];
 
-class Form extends React.Component<Props, { isValide: boolean }> {
+class Form extends React.Component<Props, { isValidate: boolean }> {
   private inputName = createRef<InputText>();
 
   private inputSurName = createRef<InputText>();
@@ -49,12 +34,15 @@ class Form extends React.Component<Props, { isValide: boolean }> {
 
   private inputRadio = createRef<InputRadio>();
 
-  // constructor(props: Props) {
-  //   super(props);
-  //   this.state = {
-  //     isValide: false,
-  //   };
-  // }
+  constructor(props: Props) {
+    super(props);
+    this.handleValidate = this.handleValidate.bind(this);
+    this.state = { isValidate: false };
+  }
+
+  handleValidate() {
+    this.setState({ isValidate: true });
+  }
 
   handleSubmit: React.FormEventHandler<HTMLFormElement> = (
     event: React.FormEvent<HTMLFormElement>
@@ -66,32 +54,46 @@ class Form extends React.Component<Props, { isValide: boolean }> {
       birthday: this.inputDate.current!.hendleInput(),
       avatar: this.inputFile.current!.hendleInput(),
       select: this.inputSelect.current!.hendleInput(),
-      html: this.inputCheckbox1.current!.hendleInput(),
-      css: this.inputCheckbox2.current!.hendleInput(),
-      js: this.inputCheckbox3.current!.hendleInput(),
-      react: this.inputCheckbox4.current!.hendleInput(),
+      html: this.inputCheckbox1.current!.hendleInput() ? 'HTML' : '',
+      css: this.inputCheckbox2.current!.hendleInput() ? 'CSS' : '',
+      js: this.inputCheckbox3.current!.hendleInput() ? 'JS' : '',
+      react: this.inputCheckbox4.current!.hendleInput() ? 'REACT' : '',
       radio: this.inputRadio.current!.hendleInput(),
     };
     dataArray.push(dataList);
-    console.log(dataArray, dataList);
+    console.log(dataArray);
+    this.handleValidate();
+    const { isValidate } = this.state;
+    console.log(isValidate);
+    // alert('Карточка создалась!');
   };
 
   render() {
+    const { isValidate } = this.state;
+    let card;
+    if (isValidate) {
+      card = <CardsData />;
+    } else {
+      card = null;
+    }
     return (
-      <form onSubmit={this.handleSubmit} className="form-component">
-        <InputText label="Name:" name="inputName" ref={this.inputName} />
-        <InputText label="SurName:" name="inputSurName" ref={this.inputSurName} />
-        <InputDate ref={this.inputDate} />
-        <InputFile ref={this.inputFile} />
-        <InputSelect ref={this.inputSelect} />
-        <h3 className="h3">Scills:</h3>
-        <InputCheckbox label="HTML" ref={this.inputCheckbox1} />
-        <InputCheckbox label="CSS" ref={this.inputCheckbox2} />
-        <InputCheckbox label="JS" ref={this.inputCheckbox3} />
-        <InputCheckbox label="REACT" ref={this.inputCheckbox4} />
-        <InputRadio ref={this.inputRadio} />
-        <Button />
-      </form>
+      <>
+        <form onSubmit={this.handleSubmit} className="form-component">
+          <InputText label="Name:" name="inputName" ref={this.inputName} />
+          <InputText label="SurName:" name="inputSurName" ref={this.inputSurName} />
+          <InputDate ref={this.inputDate} />
+          <InputFile ref={this.inputFile} />
+          <InputSelect ref={this.inputSelect} />
+          <h3 className="h3">Scills:</h3>
+          <InputCheckbox label="HTML" ref={this.inputCheckbox1} />
+          <InputCheckbox label="CSS" ref={this.inputCheckbox2} />
+          <InputCheckbox label="JS" ref={this.inputCheckbox3} />
+          <InputCheckbox label="REACT" ref={this.inputCheckbox4} />
+          <InputRadio ref={this.inputRadio} />
+          <Button />
+        </form>
+        {card}
+      </>
     );
   }
 }
