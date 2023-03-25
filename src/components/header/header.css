@@ -6,6 +6,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.header__h2 {
+  padding-left: 10px;
+}
 .wrap-links {
   display: flex;
   justify-content: end;
