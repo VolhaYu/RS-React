@@ -10,6 +10,7 @@ export type Props = object;
 export type PropsFormType = {
   label?: string;
   name?: string;
+  error?: string;
   surName?: string;
   birthday?: string;
   file?: string;
@@ -20,6 +21,7 @@ export type PropsFormType = {
   JS?: string;
   REACT?: string;
   radio?: string;
+  id?: string;
 };
 
 export interface Products {
@@ -49,7 +51,24 @@ export interface DataArray {
 }
 
 export type State = {
-  isValidate: boolean;
-  isHidden: boolean;
-  message?: React.ReactNode | null;
+  isValidate?: boolean;
+  isHidden?: boolean;
+  nameError?: string;
+  surNameError?: string;
+  birthError?: string;
+  fileError?: string;
+  selectError?: string;
+  checkboxError?: string;
+  radioError?: string;
+  // nameValid?: boolean;
+  // surNameValid?: boolean;
+  // dataValid?: boolean;
+  // inputError?: string;
+  // fileValid?: boolean;
+  // selectValid?: boolean;
+  // htmlValid?: boolean;
+  // cssValid?: boolean;
+  // jstValid?: boolean;
+  // reacttValid?: boolean;
+  // radioValid?: boolean;
 };

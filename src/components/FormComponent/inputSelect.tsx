@@ -15,16 +15,21 @@ class InputSelect extends React.Component<PropsFormType> {
   }
 
   render() {
+    const { error } = this.props;
     return (
-      <label>
-        City:
-        <select className="input" name="select" ref={this.selectRef} required>
-          <option value="Minsk">Minsk</option>
-          <option value="Brest">Brest</option>
-          <option value="Moscow">Moscow</option>
-          <option value="St.Petersburg">St.Petersburg</option>
-        </select>
-      </label>
+      <div className="wrap-input">
+        <label>
+          City:
+          <select className="input" name="select" ref={this.selectRef} required>
+            <option> </option>
+            <option value="Minsk">Minsk</option>
+            <option value="Brest">Brest</option>
+            <option value="Moscow">Moscow</option>
+            <option value="St.Petersburg">St.Petersburg</option>
+          </select>
+        </label>
+        <span className="error">{error}</span>
+      </div>
     );
   }
 }

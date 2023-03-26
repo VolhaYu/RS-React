@@ -15,11 +15,15 @@ class InputRadio extends React.Component<PropsFormType> {
   }
 
   render() {
+    const { error } = this.props;
     return (
-      <label>
-        I agree to the processing of data
-        <input type="radio" name="radio" className="input" ref={this.radioRef} required />
-      </label>
+      <div className="wrap-input">
+        <label>
+          I agree to the processing of data
+          <input type="radio" name="radio" className="input" ref={this.radioRef} required />
+        </label>
+        <span className="error">{error}</span>
+      </div>
     );
   }
 }

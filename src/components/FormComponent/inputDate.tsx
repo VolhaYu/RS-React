@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import { PropsFormType } from '../../types';
 
-class InputDate extends React.Component {
+class InputDate extends React.Component<PropsFormType> {
   private dataRef = createRef<HTMLInputElement>();
 
   constructor(props: PropsFormType) {
@@ -15,11 +15,15 @@ class InputDate extends React.Component {
   }
 
   render() {
+    const { error } = this.props;
     return (
-      <label>
-        Birthday date:
-        <input type="date" name="data" className="input" ref={this.dataRef} required />
-      </label>
+      <div className="wrap-input">
+        <label>
+          Birthday date:
+          <input type="date" name="data" className="input" ref={this.dataRef} required />
+        </label>
+        <span className="error">{error}</span>
+      </div>
     );
   }
 }

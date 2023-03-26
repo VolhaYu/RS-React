@@ -15,12 +15,15 @@ class InputText extends React.Component<PropsFormType> {
   }
 
   render() {
-    const { label, name } = this.props;
+    const { label, name, error } = this.props;
     return (
-      <label className="label">
-        {label}
-        <input type="text" name={name} className="input" ref={this.nameRef} required />
-      </label>
+      <div className="wrap-input">
+        <label className="label">
+          {label}
+          <input type="text" name={name} className="input" ref={this.nameRef} required />
+        </label>
+        <span className="error">{error}</span>
+      </div>
     );
   }
 }
