@@ -47,7 +47,7 @@ class Form extends React.Component<Props, State> {
       nameError: '',
       surNameError: '',
       birthError: '',
-      // fileError: '',
+      fileError: '',
       selectError: '',
       checkboxError: '',
       radioError: '',
@@ -60,7 +60,7 @@ class Form extends React.Component<Props, State> {
         nameFirst: this.inputName.current!.hendleInput(),
         nameLast: this.inputSurName.current!.hendleInput(),
         birthday: this.inputDate.current!.hendleInput(),
-        avatar: this.inputFile.current!.hendleInput() as string,
+        avatar: this.inputFile.current!.hendleInput(),
         select: this.inputSelect.current!.hendleInput(),
         html: this.inputCheckbox1.current!.hendleInput() ? 'HTML' : '',
         css: this.inputCheckbox2.current!.hendleInput() ? 'CSS' : '',
@@ -89,7 +89,7 @@ class Form extends React.Component<Props, State> {
     const nameFirst = this.inputName.current!.hendleInput();
     const nameLast = this.inputSurName.current!.hendleInput();
     const birthday = this.inputDate.current!.hendleInput();
-    // const avatar = this.inputFile.current!.hendleInput();
+    const avatar = this.inputFile.current!.hendleInput();
     const select = this.inputSelect.current!.hendleInput();
     const html = this.inputCheckbox1.current!.hendleInput();
     const css = this.inputCheckbox2.current!.hendleInput();
@@ -139,6 +139,14 @@ class Form extends React.Component<Props, State> {
       dataValue.birthError = 'Error!';
     }
 
+    if (!avatar?.length) {
+      this.setState({ fileError: 'Choose File!' });
+      dataValue.fileError = 'Error!';
+    } else {
+      this.setState({ fileError: '' });
+      delete dataValue.fileError;
+    }
+
     if (select!.length > 0) {
       this.setState({ selectError: '' });
       delete dataValue.selectError;
@@ -154,6 +162,7 @@ class Form extends React.Component<Props, State> {
       this.setState({ checkboxError: '' });
       delete dataValue.checkboxError;
     }
+
     if (!radio) {
       this.setState({ radioError: 'We must agree!' });
       dataValue.radioError = 'Error!';
@@ -176,10 +185,12 @@ class Form extends React.Component<Props, State> {
       nameError,
       surNameError,
       birthError,
+      fileError,
       selectError,
       checkboxError,
       radioError,
     } = this.state;
+
     let card: React.ReactNode;
     let message: React.ReactNode;
     if (isValidate) {
@@ -200,7 +211,7 @@ class Form extends React.Component<Props, State> {
             ref={this.inputSurName}
           />
           <InputDate error={birthError} ref={this.inputDate} />
-          <InputFile ref={this.inputFile} />
+          <InputFile ref={this.inputFile} error={fileError} />
           <InputSelect error={selectError} ref={this.inputSelect} />
           <h3 className="h3">Scills:</h3>
           <InputCheckbox label="HTML" ref={this.inputCheckbox1} />

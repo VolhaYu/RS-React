@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import { PropsFormType } from '../../types';
 
-class InputFile extends React.Component {
+class InputFile extends React.Component<PropsFormType> {
   private fileRef = createRef<HTMLInputElement>();
 
   constructor(props: PropsFormType) {
@@ -10,23 +10,30 @@ class InputFile extends React.Component {
   }
 
   hendleInput() {
-    const fileInput = this.fileRef.current?.files;
-    return fileInput ? URL.createObjectURL(fileInput[0]) : fileInput;
+    let fileInput;
+    if (this.fileRef.current?.files?.length) {
+      fileInput = URL.createObjectURL(this.fileRef.current?.files[0]);
+    }
+    return fileInput;
   }
 
   render() {
+    const { error } = this.props;
     return (
-      <label>
-        Avatar:
-        <input
-          type="file"
-          name="file"
-          className="input"
-          accept="image/png, image/jpeg"
-          ref={this.fileRef}
-          required
-        />
-      </label>
+      <div className="wrap-input">
+        <label>
+          Avatar:
+          <input
+            type="file"
+            name="file"
+            className="input"
+            accept="image/png, image/jpeg"
+            ref={this.fileRef}
+            // required
+          />
+        </label>
+        <span className="error">{error}</span>
+      </div>
     );
   }
 }
