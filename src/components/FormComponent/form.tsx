@@ -10,7 +10,6 @@ import InputText from './inputText';
 import { Props, State } from '../../types';
 import CardsData, { dataArray } from '../cardOfData/cardsData';
 import Message from '../cardOfData/Message';
-// import Validate, { dataValue } from './validate';
 
 const dataValue: State = {};
 
@@ -56,67 +55,24 @@ class Form extends React.Component<Props, State> {
   }
 
   handleValidate() {
-    // const data = dataArray[dataArray.length - 1];
-    // if (data.nameFirst!.length > 0) {
-    //   if (data.nameFirst!.length >= 3 && data.nameFirst![0] === data.nameFirst![0].toUpperCase()) {
-    //     this.setState({ nameError: '' });
-    //     delete dataValue.nameError;
-    //   } else {
-    //     this.setState({
-    //       nameError: 'Must be at least 3 characters and start with a capital letter!',
-    //     });
-    //     dataValue.nameError = 'Must be at least 3 characters and start with a capital letter!';
-    //   }
-    // } else {
-    //   this.setState({
-    //     nameError: 'Must be at least 3 characters and start with a capital letter!',
-    //   });
-    //   dataValue.nameError = 'Must be at least 3 characters and start with a capital letter!';
-    // }
-    // if (data.nameLast!.length > 0) {
-    //   if (data.nameLast!.length >= 3 && data.nameLast![0] === data.nameLast![0].toUpperCase()) {
-    //     this.setState({ surNameError: '' });
-    //     delete dataValue.surNameError;
-    //   } else {
-    //     this.setState({
-    //       surNameError: 'Must be at least 3 characters and start with a capital letter!',
-    //     });
-    //     dataValue.surNameError = 'Must be at least 3 characters and start with a capital letter!';
-    //   }
-    // } else {
-    //   this.setState({
-    //     surNameError: 'Must be at least 3 characters and start with a capital letter!',
-    //   });
-    //   dataValue.surNameError = 'Must be at least 3 characters and start with a capital letter!';
-    // }
-    // if (data.birthday!.length === 8) {
-    //   this.setState({ birthError: '' });
-    // } else {
-    //   this.setState({ birthError: 'Enter full date!' });
-    // }
-    // if (data.select!.length > 0) {
-    //   this.setState({ selectError: '' });
-    // } else {
-    //   this.setState({ selectError: 'Choose city!' });
-    // }
-    // if (
-    //   data.html!.length === 0 &&
-    //   data.css!.length === 0 &&
-    //   data.js!.length === 0 &&
-    //   data.react!.length === 0
-    // ) {
-    //   this.setState({ checkboxError: 'Choose at least one option!' });
-    // } else {
-    //   this.setState({ checkboxError: '' });
-    // }
-    // if (data.radio! === true) {
-    //   this.setState({ radioError: '' });
-    // } else {
-    //   this.setState({ radioError: 'We must agree!' });
-    // }
-    console.log(dataValue);
     if (Object.keys(dataValue).length === 0) {
+      const dataList = {
+        nameFirst: this.inputName.current!.hendleInput(),
+        nameLast: this.inputSurName.current!.hendleInput(),
+        birthday: this.inputDate.current!.hendleInput(),
+        avatar: this.inputFile.current!.hendleInput() as string,
+        select: this.inputSelect.current!.hendleInput(),
+        html: this.inputCheckbox1.current!.hendleInput() ? 'HTML' : '',
+        css: this.inputCheckbox2.current!.hendleInput() ? 'CSS' : '',
+        js: this.inputCheckbox3.current!.hendleInput() ? 'JS' : '',
+        react: this.inputCheckbox4.current!.hendleInput() ? 'REACT' : '',
+        radio: this.inputRadio.current!.hendleInput(),
+      };
+      if (dataList) {
+        dataArray.push(dataList);
+      }
       this.setState({ isValidate: true, isHidden: true });
+      this.form.current!.reset();
     }
   }
 
@@ -124,86 +80,86 @@ class Form extends React.Component<Props, State> {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-    const dataList = {
-      nameFirst: this.inputName.current!.hendleInput(),
-      nameLast: this.inputSurName.current!.hendleInput(),
-      birthday: this.inputDate.current!.hendleInput(),
-      avatar: this.inputFile.current!.hendleInput() as string,
-      select: this.inputSelect.current!.hendleInput(),
-      html: this.inputCheckbox1.current!.hendleInput() ? 'HTML' : '',
-      css: this.inputCheckbox2.current!.hendleInput() ? 'CSS' : '',
-      js: this.inputCheckbox3.current!.hendleInput() ? 'JS' : '',
-      react: this.inputCheckbox4.current!.hendleInput() ? 'REACT' : '',
-      radio: this.inputRadio.current!.hendleInput(),
-    };
-    if (dataList) {
-      dataArray.push(dataList);
-    }
-    console.log(dataArray, dataValue);
-    // this.checkValid();
+    this.checkValid();
     this.handleValidate();
     this.hiddenMessage();
-    this.form.current!.reset();
   };
 
   checkValid() {
-    const data = dataArray[dataArray.length - 1];
-    if (data.nameFirst!.length > 0) {
-      if (data.nameFirst!.length >= 3 && data.nameFirst![0] === data.nameFirst![0].toUpperCase()) {
+    const nameFirst = this.inputName.current!.hendleInput();
+    const nameLast = this.inputSurName.current!.hendleInput();
+    const birthday = this.inputDate.current!.hendleInput();
+    // const avatar = this.inputFile.current!.hendleInput();
+    const select = this.inputSelect.current!.hendleInput();
+    const html = this.inputCheckbox1.current!.hendleInput();
+    const css = this.inputCheckbox2.current!.hendleInput();
+    const js = this.inputCheckbox3.current!.hendleInput();
+    const react = this.inputCheckbox4.current!.hendleInput();
+    const radio = this.inputRadio.current!.hendleInput();
+
+    if (nameFirst!.length > 0) {
+      if (nameFirst!.length >= 3 && nameFirst![0] === nameFirst![0].toUpperCase()) {
         this.setState({ nameError: '' });
         delete dataValue.nameError;
       } else {
         this.setState({
           nameError: 'Must be at least 3 characters and start with a capital letter!',
         });
-        dataValue.nameError = 'Must be at least 3 characters and start with a capital letter!';
+        dataValue.nameError = 'Error!';
       }
     } else {
       this.setState({
         nameError: 'Must be at least 3 characters and start with a capital letter!',
       });
-      dataValue.nameError = 'Must be at least 3 characters and start with a capital letter!';
+      dataValue.nameError = 'Error!';
     }
-    if (data.nameLast!.length > 0) {
-      if (data.nameLast!.length >= 3 && data.nameLast![0] === data.nameLast![0].toUpperCase()) {
+
+    if (nameLast!.length > 0) {
+      if (nameLast!.length >= 3 && nameLast![0] === nameLast![0].toUpperCase()) {
         this.setState({ surNameError: '' });
         delete dataValue.surNameError;
       } else {
         this.setState({
           surNameError: 'Must be at least 3 characters and start with a capital letter!',
         });
-        dataValue.surNameError = 'Must be at least 3 characters and start with a capital letter!';
+        dataValue.surNameError = 'Error!';
       }
     } else {
       this.setState({
         surNameError: 'Must be at least 3 characters and start with a capital letter!',
       });
-      dataValue.surNameError = 'Must be at least 3 characters and start with a capital letter!';
+      dataValue.surNameError = 'Error!';
     }
-    if (data.birthday!.length === 8) {
+
+    if (birthday!.length === 10) {
       this.setState({ birthError: '' });
+      delete dataValue.birthError;
     } else {
       this.setState({ birthError: 'Enter full date!' });
+      dataValue.birthError = 'Error!';
     }
-    if (data.select!.length > 0) {
+
+    if (select!.length > 0) {
       this.setState({ selectError: '' });
+      delete dataValue.selectError;
     } else {
       this.setState({ selectError: 'Choose city!' });
+      dataValue.selectError = 'Error!';
     }
-    if (
-      data.html!.length === 0 &&
-      data.css!.length === 0 &&
-      data.js!.length === 0 &&
-      data.react!.length === 0
-    ) {
+
+    if (!html && !css && !js && !react) {
       this.setState({ checkboxError: 'Choose at least one option!' });
+      dataValue.checkboxError = 'Error!';
     } else {
       this.setState({ checkboxError: '' });
+      delete dataValue.checkboxError;
     }
-    if (data.radio! === true) {
-      this.setState({ radioError: '' });
-    } else {
+    if (!radio) {
       this.setState({ radioError: 'We must agree!' });
+      dataValue.radioError = 'Error!';
+    } else {
+      this.setState({ radioError: '' });
+      delete dataValue.radioError;
     }
   }
 

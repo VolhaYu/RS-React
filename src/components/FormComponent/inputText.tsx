@@ -20,7 +20,7 @@ class InputText extends React.Component<PropsFormType> {
       <div className="wrap-input">
         <label className="label">
           {label}
-          <input type="text" name={name} className="input" ref={this.nameRef} required />
+          <input type="text" name={name} className="input" ref={this.nameRef} />
         </label>
         <span className="error">{error}</span>
       </div>

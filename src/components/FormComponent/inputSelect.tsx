@@ -20,7 +20,7 @@ class InputSelect extends React.Component<PropsFormType> {
       <div className="wrap-input">
         <label>
           City:
-          <select className="input" name="select" ref={this.selectRef} required>
+          <select className="input" name="select" ref={this.selectRef}>
             <option> </option>
             <option value="Minsk">Minsk</option>
             <option value="Brest">Brest</option>

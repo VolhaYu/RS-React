@@ -20,7 +20,7 @@ class InputRadio extends React.Component<PropsFormType> {
       <div className="wrap-input">
         <label>
           I agree to the processing of data
-          <input type="radio" name="radio" className="input" ref={this.radioRef} required />
+          <input type="radio" name="radio" className="input" ref={this.radioRef} />
         </label>
         <span className="error">{error}</span>
       </div>

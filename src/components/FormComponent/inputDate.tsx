@@ -20,7 +20,7 @@ class InputDate extends React.Component<PropsFormType> {
       <div className="wrap-input">
         <label>
           Birthday date:
-          <input type="date" name="data" className="input" ref={this.dataRef} required />
+          <input type="date" name="data" className="input" ref={this.dataRef} />
         </label>
         <span className="error">{error}</span>
       </div>
