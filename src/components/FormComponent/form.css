@@ -1,0 +1,26 @@
+.form-component {
+  padding: 5px;
+}
+.input {
+  display: block;
+  margin: 5px;
+}
+.input-checkbox {
+  display: inline;
+}
+.h3 {
+  margin: 0;
+}
+.label-checkbox,
+.label {
+  display: block;
+}
+.wrap-input {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.error {
+  color: red;
+  margin-left: 10px;
+}

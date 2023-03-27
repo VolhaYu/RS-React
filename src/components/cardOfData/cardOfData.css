@@ -1,0 +1,24 @@
+.wrap-card {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  
+}
+.one-card {
+  background-color: rgb(204 186 186);
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 10px;
+}
+.img-card {
+  max-width: 100px;
+}
+
+.massage-h2 {
+  position: fixed;
+  left: 45%;
+  top: 45%;
+}

@@ -1,0 +1,16 @@
+.form {
+text-align: center;
+}
+.form__input,
+.form__button {
+  width: 40%;
+  height: 30px;
+  border-color: rgb(107, 102, 102);
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.form__button {
+  width: 10%;
+  border: none;
+  cursor: pointer;
+}
