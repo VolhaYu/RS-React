@@ -18,12 +18,7 @@ class InputCheckbox extends React.Component<PropsFormType> {
     const { label } = this.props;
     return (
       <label className="label-checkbox">
-        <input
-          name="checkbox"
-          type="checkbox"
-          className="input input-checkbox"
-          ref={this.checkboxRef}
-        />
+        <input name="checkbox" type="checkbox" className="input-checkbox" ref={this.checkboxRef} />
         {label}
       </label>
     );

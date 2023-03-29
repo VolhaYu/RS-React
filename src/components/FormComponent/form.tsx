@@ -8,8 +8,8 @@ import InputRadio from './inputRadio';
 import InputSelect from './inputSelect';
 import InputText from './inputText';
 import { Props, State } from '../../types';
-import CardsData, { dataArray } from '../cardOfData/cardsData';
-import Message from '../cardOfData/Message';
+import CardsData, { dataArray } from './cardOfData/cardsData';
+import Message from './cardOfData/Message';
 
 const dataValue: State = {};
 
