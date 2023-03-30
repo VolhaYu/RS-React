@@ -47,6 +47,6 @@ describe('Form', () => {
     expect(screen.getByLabelText('CSS')).toBeInTheDocument();
     expect(screen.getByLabelText('JS')).toBeInTheDocument();
     expect(screen.getByLabelText('REACT')).toBeInTheDocument();
-    expect(screen.getByLabelText('I agree to the processing of data')).toBeInTheDocument();
+    expect(screen.getByLabelText('I agree to the processing of data:')).toBeInTheDocument();
   });
 });

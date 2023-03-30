@@ -18,12 +18,7 @@
 .label {
   display: block;
 }
-.wrap-input {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  margin-top: 10px;
-}
+
 .error {
   color: red;
   margin-left: 10px;

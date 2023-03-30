@@ -1,28 +1,20 @@
-import React, { createRef } from 'react';
-import { PropsFormType } from '../../types';
+import React from 'react';
+import { InputProps } from '../../types';
 
-class InputCheckbox extends React.Component<PropsFormType> {
-  private checkboxRef = createRef<HTMLInputElement>();
-
-  constructor(props: PropsFormType) {
-    super(props);
-    this.hendleInput = this.hendleInput.bind(this);
-  }
-
-  hendleInput() {
-    const checkboxInput = this.checkboxRef.current;
-    return checkboxInput?.checked;
-  }
-
-  render() {
-    const { label } = this.props;
-    return (
+function InputCheckbox({ label, register }: InputProps) {
+  return (
+    <>
       <label className="label-checkbox">
-        <input name="checkbox" type="checkbox" className="input-checkbox" ref={this.checkboxRef} />
+        <input
+          type="checkbox"
+          className="input-checkbox"
+          {...register('scills', { required: 'Choose at least one option' })}
+        />
         {label}
       </label>
-    );
-  }
+      {/* {errors?.scills && <div className="error">{errors.scills.message}</div>} */}
+    </>
+  );
 }
 
 export default InputCheckbox;

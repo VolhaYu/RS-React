@@ -49,6 +49,7 @@ module.exports = {
     'dot-notation': 'off',
     '@typescript-eslint/dot-notation': 'error',
     'jsx-a11y/label-has-associated-control': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     react: {

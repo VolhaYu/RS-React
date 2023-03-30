@@ -1,9 +1,32 @@
+import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
+
 export type PageState = {
   page: string;
 };
 export interface RefObject<T> {
   readonly current: T | null;
 }
+
+export interface IFormValues {
+  'First Name': string;
+  'Last Name': string;
+  'Birthday date': string;
+  Avatar: string;
+  City: number;
+  HTML: string;
+  CSS: string;
+  JS: string;
+  REACT: string;
+  radio: string;
+  scills: string;
+}
+
+export type InputProps = {
+  label: Path<IFormValues>;
+  register: UseFormRegister<IFormValues>;
+  required: boolean;
+  errors: FieldErrors<IFormValues>;
+};
 
 export type Props = object;
 
@@ -60,15 +83,4 @@ export type State = {
   selectError?: string;
   checkboxError?: string;
   radioError?: string;
-  // nameValid?: boolean;
-  // surNameValid?: boolean;
-  // dataValid?: boolean;
-  // inputError?: string;
-  // fileValid?: boolean;
-  // selectValid?: boolean;
-  // htmlValid?: boolean;
-  // cssValid?: boolean;
-  // jstValid?: boolean;
-  // reacttValid?: boolean;
-  // radioValid?: boolean;
 };

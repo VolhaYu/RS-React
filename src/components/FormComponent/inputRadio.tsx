@@ -1,31 +1,20 @@
-import React, { createRef } from 'react';
-import { PropsFormType } from '../../types';
+import React from 'react';
+import { InputProps } from '../../types';
 
-class InputRadio extends React.Component<PropsFormType> {
-  private radioRef = createRef<HTMLInputElement>();
-
-  constructor(props: PropsFormType) {
-    super(props);
-    this.hendleInput = this.hendleInput.bind(this);
-  }
-
-  hendleInput() {
-    const radioInput = this.radioRef.current;
-    return radioInput?.checked;
-  }
-
-  render() {
-    const { error } = this.props;
-    return (
-      <div className="wrap-input">
-        <label>
-          I agree to the processing of data:
-          <input type="radio" name="radio" className="input" ref={this.radioRef} />
-        </label>
-        <span className="error">{error}</span>
-      </div>
-    );
-  }
+function InputRadio({ label, register, errors }: InputProps) {
+  return (
+    <div className="wrap-input">
+      <label>
+        I agree to the processing of data:
+        <input
+          type="radio"
+          className="input"
+          {...register(label, { required: 'We must agree!' })}
+        />
+      </label>
+      {errors?.radio && <div className="error">{errors.radio.message}</div>}
+    </div>
+  );
 }
 
 export default InputRadio;

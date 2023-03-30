@@ -1,31 +1,22 @@
-import React, { createRef } from 'react';
-import { PropsFormType } from '../../types';
+import React from 'react';
+import { InputProps } from '../../types';
 
-class InputDate extends React.Component<PropsFormType> {
-  private dataRef = createRef<HTMLInputElement>();
-
-  constructor(props: PropsFormType) {
-    super(props);
-    this.hendleInput = this.hendleInput.bind(this);
-  }
-
-  hendleInput() {
-    const dataInput = this.dataRef.current;
-    return dataInput?.value;
-  }
-
-  render() {
-    const { error } = this.props;
-    return (
-      <div className="wrap-input">
-        <label>
-          Birthday date:
-          <input type="date" name="data" className="input" ref={this.dataRef} />
-        </label>
-        <span className="error">{error}</span>
-      </div>
-    );
-  }
+function InputDate({ label, register, errors }: InputProps) {
+  return (
+    <div className="wrap-input">
+      <label>
+        {label}
+        <input
+          type="date"
+          className="input"
+          {...register(label, {
+            required: 'Fill in the field!',
+          })}
+        />
+      </label>
+      {errors?.['Birthday date'] && <div className="error">{errors['Birthday date'].message}</div>}
+    </div>
+  );
 }
 
 export default InputDate;
