@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Button from './button';
 import './form.css';
 import InputCheckbox from './inputCheckbox';
 import InputDate from './inputDate';
-import InputFile, { file } from './inputFile';
+import InputFile from './inputFile';
 import InputRadio from './inputRadio';
 import InputSelect from './inputSelect';
 import { IFormValues } from '../../types';
@@ -26,8 +26,14 @@ function Form() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { isSubmitSuccessful, errors },
   } = useForm<IFormValues>();
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [reset, isSubmitSuccessful]);
 
   const [isValidate, setValidate] = useState(false);
   const [isHidden, setHidden] = useState(false);
@@ -38,27 +44,21 @@ function Form() {
     }, 2000);
   };
 
-  let avatarFile: string;
-
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     setValidate(true);
     setHidden(true);
-    if (file?.data !== undefined) {
-      avatarFile = URL.createObjectURL(file.data);
-    }
     const dataList: DataList = {
       nameFirst: data['First Name'],
       nameLast: data['Last Name'],
       birthday: data['Birthday date'],
-      avatar: avatarFile,
-      select: data.City as unknown as string,
+      avatar: URL.createObjectURL(data.Avatar[0] as unknown as Blob | MediaSource),
+      select: data.City,
       scills: Array.from(data.scills).join(' '),
     };
     if (dataList) {
       dataArray.push(dataList);
     }
     hiddenMessage();
-    reset();
   };
 
   let card: React.ReactNode;

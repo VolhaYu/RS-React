@@ -9,7 +9,7 @@ export interface IFormValues {
   'Last Name': string;
   'Birthday date': string;
   Avatar: string;
-  City: number;
+  City: string;
   HTML: string;
   CSS: string;
   JS: string;

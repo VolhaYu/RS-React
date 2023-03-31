@@ -21,10 +21,6 @@ function CardsData() {
               city={data.select}
               file={data.avatar}
               scills={data.scills}
-              // HTML={data.html}
-              // CSS={data.css}
-              // JS={data.js}
-              // REACT={data.react}
             />
           );
         })}

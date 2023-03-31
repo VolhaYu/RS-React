@@ -1,6 +1,7 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
 
 import React from 'react';
 import FormsPage from '../../pages/Forms';
@@ -12,6 +13,15 @@ import InputFile from './inputFile';
 import InputSelect from './inputSelect';
 import InputCheckbox from './inputCheckbox';
 import InputRadio from './inputRadio';
+import CardsData from './cardOfData/cardsData';
+import Message from './cardOfData/Message';
+
+function setup(tsx: JSX.Element) {
+  return {
+    user: userEvent.setup(),
+    ...render(tsx),
+  };
+}
 
 describe('Form', () => {
   it('Renders Form Pages', () => {
@@ -48,5 +58,20 @@ describe('Form', () => {
     expect(screen.getByLabelText('JS')).toBeInTheDocument();
     expect(screen.getByLabelText('REACT')).toBeInTheDocument();
     expect(screen.getByLabelText('I agree to the processing of data:')).toBeInTheDocument();
+  });
+  it('display cards after onSubmit', async () => {
+    const { user } = setup(<Form />);
+
+    await user.click(screen.getByRole('button'));
+    expect(Form).toContain(CardsData);
+    expect(Form).toContain(Message);
+  });
+  it('Renders cards in form', () => {
+    render(<CardsData />);
+    expect(
+      screen.getByRole('heading', {
+        level: 2,
+      })
+    ).toHaveTextContent('Cards');
   });
 });
