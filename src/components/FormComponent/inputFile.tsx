@@ -1,8 +1,12 @@
 import React from 'react';
-import { UseFormRegister } from 'react-hook-form';
-import { IFormValues, InputProps } from '../../types';
+import { InputProps } from '../../types';
 
-function InputFile({ label, register, errors, onChange }: InputProps) {
+type FileData = {
+  data?: Blob | MediaSource;
+};
+export const file: FileData = {};
+
+function InputFile({ label, register, errors }: InputProps) {
   return (
     <div className="wrap-input">
       <label>
@@ -11,9 +15,13 @@ function InputFile({ label, register, errors, onChange }: InputProps) {
           type="file"
           className="input"
           accept="image/png, image/jpeg"
-          // name="Avatar"
-          // ref={register}
           {...register(label, { required: 'Choose File!' })}
+          onChange={(event) => {
+            if (event.target.files) {
+              file.data = event.target?.files[0];
+            }
+            return file;
+          }}
         />
       </label>
       {errors?.Avatar && <div className="error">{errors.Avatar.message}</div>}

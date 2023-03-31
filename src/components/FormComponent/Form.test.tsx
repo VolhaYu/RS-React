@@ -38,11 +38,11 @@ describe('Form', () => {
   });
   it('Render Card and message', async () => {
     render(<Form />);
-    expect(screen.getByLabelText('Name:')).toBeInTheDocument();
-    expect(screen.getByLabelText('SurName:')).toBeInTheDocument();
-    expect(screen.getByLabelText('Birthday date:')).toBeInTheDocument();
-    expect(screen.getByLabelText('Avatar:')).toBeInTheDocument();
-    expect(screen.getByLabelText('City:')).toBeInTheDocument();
+    expect(screen.getByLabelText('First Name')).toBeInTheDocument();
+    expect(screen.getByLabelText('Last Name')).toBeInTheDocument();
+    expect(screen.getByLabelText('Birthday date')).toBeInTheDocument();
+    expect(screen.getByLabelText('Avatar')).toBeInTheDocument();
+    expect(screen.getByLabelText('City')).toBeInTheDocument();
     expect(screen.getByLabelText('HTML')).toBeInTheDocument();
     expect(screen.getByLabelText('CSS')).toBeInTheDocument();
     expect(screen.getByLabelText('JS')).toBeInTheDocument();

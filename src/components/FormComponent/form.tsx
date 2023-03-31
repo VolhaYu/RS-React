@@ -4,150 +4,13 @@ import Button from './button';
 import './form.css';
 import InputCheckbox from './inputCheckbox';
 import InputDate from './inputDate';
-import InputFile from './inputFile';
+import InputFile, { file } from './inputFile';
 import InputRadio from './inputRadio';
 import InputSelect from './inputSelect';
-import { DataArray, IFormValues } from '../../types';
+import { IFormValues } from '../../types';
 import CardsData, { dataArray } from './cardOfData/cardsData';
 import Message from './cardOfData/Message';
 import InputText from './inputText';
-
-// const dataValue: State = {};
-
-// class Form extends React.Component<Props, State> {
-//   // const { register, handleSubmit, errors} = useForm();
-//   private inputName = createRef<InputText>();
-
-//   private inputSurName = createRef<InputText>();
-
-//   private inputDate = createRef<InputDate>();
-
-//   private inputFile = createRef<InputFile>();
-
-//   private inputSelect = createRef<InputSelect>();
-
-//   private inputCheckbox1 = createRef<InputCheckbox>();
-
-//   private inputCheckbox2 = createRef<InputCheckbox>();
-
-//   private inputCheckbox3 = createRef<InputCheckbox>();
-
-//   private inputCheckbox4 = createRef<InputCheckbox>();
-
-//   private inputRadio = createRef<InputRadio>();
-
-//   private form = createRef<HTMLFormElement>();
-
-//   constructor(props: Props) {
-//     super(props);
-//     this.handleValidate = this.handleValidate.bind(this);
-//     this.hiddenMessage = this.hiddenMessage.bind(this);
-//     this.checkValid = this.checkValid.bind(this);
-//     this.state = {
-//       isValidate: false,
-//       isHidden: false,
-//       nameError: '',
-//       surNameError: '',
-//       birthError: '',
-//       fileError: '',
-//       selectError: '',
-//       checkboxError: '',
-//       radioError: '',
-//     };
-//   }
-
-//   handleValidate() {
-//     if (Object.keys(dataValue).length === 0) {
-//       const dataList = {
-//         nameFirst: this.inputName.current!.hendleInput(),
-//         nameLast: this.inputSurName.current!.hendleInput(),
-//         birthday: this.inputDate.current!.hendleInput(),
-//         avatar: this.inputFile.current!.hendleInput(),
-//         select: this.inputSelect.current!.hendleInput(),
-//         html: this.inputCheckbox1.current!.hendleInput() ? 'HTML' : '',
-//         css: this.inputCheckbox2.current!.hendleInput() ? 'CSS' : '',
-//         js: this.inputCheckbox3.current!.hendleInput() ? 'JS' : '',
-//         react: this.inputCheckbox4.current!.hendleInput() ? 'REACT' : '',
-//         radio: this.inputRadio.current!.hendleInput(),
-//       };
-//       if (dataList) {
-//         dataArray.push(dataList);
-//       }
-//       this.setState({ isValidate: true, isHidden: true });
-//       this.form.current!.reset();
-//     }
-//   }
-
-//   handleSubmit: React.FormEventHandler<HTMLFormElement> = (
-//     event: React.FormEvent<HTMLFormElement>
-//   ) => {
-//     event.preventDefault();
-//     this.checkValid();
-//     this.handleValidate();
-//     this.hiddenMessage();
-//   };
-
-//   hiddenMessage() {
-//     setTimeout(() => {
-//       this.setState({ isHidden: false });
-//     }, 2000);
-//   }
-
-//   render() {
-//     const {
-//       isValidate,
-//       isHidden,
-//       nameError,
-//       surNameError,
-//       birthError,
-//       fileError,
-//       selectError,
-//       checkboxError,
-//       radioError,
-//     } = this.state;
-
-//     let card: React.ReactNode;
-//     let message: React.ReactNode;
-//     if (isValidate) {
-//       card = <CardsData />;
-//       message = <Message />;
-//     }
-//     if (!isHidden) {
-//       message = null;
-//     }
-//     return (
-//       <>
-//         <form onSubmit={this.handleSubmit} className="form-component" ref={this.form}>
-//           <InputText label="Name:" name="inputName" error={nameError} ref={this.inputName} />
-//           <InputText
-//             label="SurName:"
-//             name="inputSurName"
-//             error={surNameError}
-//             ref={this.inputSurName}
-//           />
-//           <InputDate error={birthError} ref={this.inputDate} />
-//           <InputFile ref={this.inputFile} error={fileError} />
-//           <InputSelect error={selectError} ref={this.inputSelect} />
-//           <h3 className="h3">Scills:</h3>
-//           <InputCheckbox label="HTML" ref={this.inputCheckbox1} />
-//           <InputCheckbox label="CSS" ref={this.inputCheckbox2} />
-//           <InputCheckbox label="JS" ref={this.inputCheckbox3} />
-//           <InputCheckbox label="REACT" ref={this.inputCheckbox4} />
-//           <div style={{ color: 'red' }}>{checkboxError}</div>
-//           <InputRadio error={radioError} ref={this.inputRadio} />
-//           <Button />
-//         </form>
-//         {card}
-//         {message}
-//       </>
-//     );
-//   }
-// }
-
-// type ComponentProps = {
-//   register: UseFormRegister<FormInput>;
-//   errors: FieldErrors<FormInput>;
-// };
 
 type DataList = {
   nameFirst: string;
@@ -156,18 +19,13 @@ type DataList = {
   avatar: string;
   select: string;
   scills: string;
-  // html: string;
-  // css: string;
-  // js: string;
-  // react: string;
-  // radio: string;
 };
+
 function Form() {
   const {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm<IFormValues>();
 
@@ -180,30 +38,25 @@ function Form() {
     }, 2000);
   };
 
-  // console.log(watch('HTML'), watch('CSS'));
-  // const scillsData = watch('scills');
+  let avatarFile: string;
 
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
-    console.log(data);
     setValidate(true);
     setHidden(true);
+    if (file?.data !== undefined) {
+      avatarFile = URL.createObjectURL(file.data);
+    }
     const dataList: DataList = {
       nameFirst: data['First Name'],
       nameLast: data['Last Name'],
       birthday: data['Birthday date'],
-      avatar: data.Avatar,
+      avatar: avatarFile,
       select: data.City as unknown as string,
       scills: Array.from(data.scills).join(' '),
-      // html: data.HTML ? 'HTML' : '',
-      // css: data.CSS ? 'CSS' : '',
-      // js: data.JS ? 'JS' : '',
-      // react: data.REACT ? 'REACT' : '',
-      // radio: data.radio,
     };
     if (dataList) {
       dataArray.push(dataList);
     }
-    console.log(dataArray);
     hiddenMessage();
     reset();
   };

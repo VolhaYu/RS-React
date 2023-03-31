@@ -3,7 +3,7 @@ import CardOfData from './cardOfData';
 import { PropsFormType } from '../../../types';
 
 function OneCard(props: PropsFormType) {
-  const { name, surName, birthday, city, file, scills, HTML, CSS, JS, REACT } = props;
+  const { name, surName, birthday, city, file, scills } = props;
   return (
     <div className="one-card">
       <CardOfData
@@ -13,10 +13,6 @@ function OneCard(props: PropsFormType) {
         city={city}
         file={file}
         scills={scills}
-        // HTML={HTML}
-        // CSS={CSS}
-        // JS={JS}
-        // REACT={REACT}
       />
     </div>
   );

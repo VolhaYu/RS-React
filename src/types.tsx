@@ -3,9 +3,6 @@ import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
 export type PageState = {
   page: string;
 };
-export interface RefObject<T> {
-  readonly current: T | null;
-}
 
 export interface IFormValues {
   'First Name': string;
@@ -28,8 +25,6 @@ export type InputProps = {
   errors: FieldErrors<IFormValues>;
   onChange?: UseFormRegister<IFormValues>;
 };
-
-// export type Props = object;
 
 export type PropsFormType = {
   label?: string;
@@ -69,21 +64,4 @@ export interface DataArray {
   avatar?: string;
   select?: string;
   scills?: string;
-  // html?: string;
-  // css?: string;
-  // js?: string;
-  // react?: string;
-  // radio?: string;
 }
-
-// export type State = {
-//   isValidate?: boolean;
-//   isHidden?: boolean;
-//   nameError?: string;
-//   surNameError?: string;
-//   birthError?: string;
-//   fileError?: string;
-//   selectError?: string;
-//   checkboxError?: string;
-//   radioError?: string;
-// };
