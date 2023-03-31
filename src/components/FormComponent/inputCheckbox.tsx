@@ -3,17 +3,20 @@ import { InputProps } from '../../types';
 
 function InputCheckbox({ label, register }: InputProps) {
   return (
-    <>
-      <label className="label-checkbox">
-        <input
-          type="checkbox"
-          className="input-checkbox"
-          {...register('scills', { required: 'Choose at least one option' })}
-        />
-        {label}
-      </label>
-      {/* {errors?.scills && <div className="error">{errors.scills.message}</div>} */}
-    </>
+    <label className="label-checkbox">
+      <input
+        type="checkbox"
+        className="input-checkbox"
+        value={label}
+        {...register('scills', {
+          onChange: (e) => {
+            return e.target.value;
+          },
+          required: 'Choose at least one option',
+        })}
+      />
+      {label}
+    </label>
   );
 }
 

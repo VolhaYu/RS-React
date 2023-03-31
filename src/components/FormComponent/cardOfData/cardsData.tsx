@@ -20,10 +20,11 @@ function CardsData() {
               birthday={data.birthday}
               city={data.select}
               file={data.avatar}
-              HTML={data.html}
-              CSS={data.css}
-              JS={data.js}
-              REACT={data.react}
+              scills={data.scills}
+              // HTML={data.html}
+              // CSS={data.css}
+              // JS={data.js}
+              // REACT={data.react}
             />
           );
         })}

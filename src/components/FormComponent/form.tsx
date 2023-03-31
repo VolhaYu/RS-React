@@ -7,12 +7,12 @@ import InputDate from './inputDate';
 import InputFile from './inputFile';
 import InputRadio from './inputRadio';
 import InputSelect from './inputSelect';
-import { DataArray, Props, IFormValues, State } from '../../types';
+import { DataArray, IFormValues } from '../../types';
 import CardsData, { dataArray } from './cardOfData/cardsData';
 import Message from './cardOfData/Message';
 import InputText from './inputText';
 
-const dataValue: State = {};
+// const dataValue: State = {};
 
 // class Form extends React.Component<Props, State> {
 //   // const { register, handleSubmit, errors} = useForm();
@@ -149,11 +149,25 @@ const dataValue: State = {};
 //   errors: FieldErrors<FormInput>;
 // };
 
+type DataList = {
+  nameFirst: string;
+  nameLast: string;
+  birthday: string;
+  avatar: string;
+  select: string;
+  scills: string;
+  // html: string;
+  // css: string;
+  // js: string;
+  // react: string;
+  // radio: string;
+};
 function Form() {
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<IFormValues>();
 
@@ -166,10 +180,30 @@ function Form() {
     }, 2000);
   };
 
+  // console.log(watch('HTML'), watch('CSS'));
+  // const scillsData = watch('scills');
+
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     console.log(data);
     setValidate(true);
     setHidden(true);
+    const dataList: DataList = {
+      nameFirst: data['First Name'],
+      nameLast: data['Last Name'],
+      birthday: data['Birthday date'],
+      avatar: data.Avatar,
+      select: data.City as unknown as string,
+      scills: Array.from(data.scills).join(' '),
+      // html: data.HTML ? 'HTML' : '',
+      // css: data.CSS ? 'CSS' : '',
+      // js: data.JS ? 'JS' : '',
+      // react: data.REACT ? 'REACT' : '',
+      // radio: data.radio,
+    };
+    if (dataList) {
+      dataArray.push(dataList);
+    }
+    console.log(dataArray);
     hiddenMessage();
     reset();
   };

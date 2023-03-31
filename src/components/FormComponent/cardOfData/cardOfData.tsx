@@ -2,7 +2,7 @@ import React from 'react';
 import { PropsFormType } from '../../../types';
 
 function CardOfData(props: PropsFormType) {
-  const { name, surName, birthday, city, file, HTML, CSS, JS, REACT } = props;
+  const { name, surName, birthday, city, file, scills, HTML, CSS, JS, REACT } = props;
   return (
     <div className="div-data">
       <p className="data-text">
@@ -13,7 +13,8 @@ function CardOfData(props: PropsFormType) {
       <img className="img-card" src={file} alt="avatar" />
       <h3>Scills:</h3>
       <p>
-        {HTML} {CSS} {JS} {REACT}
+        {scills}
+        {/* {HTML} {CSS} {JS} {REACT} */}
       </p>
     </div>
   );

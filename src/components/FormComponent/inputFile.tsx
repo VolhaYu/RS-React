@@ -1,7 +1,8 @@
 import React from 'react';
-import { InputProps } from '../../types';
+import { UseFormRegister } from 'react-hook-form';
+import { IFormValues, InputProps } from '../../types';
 
-function InputFile({ label, register, errors }: InputProps) {
+function InputFile({ label, register, errors, onChange }: InputProps) {
   return (
     <div className="wrap-input">
       <label>
@@ -10,6 +11,8 @@ function InputFile({ label, register, errors }: InputProps) {
           type="file"
           className="input"
           accept="image/png, image/jpeg"
+          // name="Avatar"
+          // ref={register}
           {...register(label, { required: 'Choose File!' })}
         />
       </label>
