@@ -1,11 +1,30 @@
+import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
+
 export type PageState = {
   page: string;
 };
-export interface RefObject<T> {
-  readonly current: T | null;
+
+export interface IFormValues {
+  'First Name': string;
+  'Last Name': string;
+  'Birthday date': string;
+  Avatar: string;
+  City: string;
+  HTML: string;
+  CSS: string;
+  JS: string;
+  REACT: string;
+  radio: string;
+  scills: string;
 }
 
-export type Props = object;
+export type InputProps = {
+  label: Path<IFormValues>;
+  register: UseFormRegister<IFormValues>;
+  required: boolean;
+  errors: FieldErrors<IFormValues>;
+  onChange?: UseFormRegister<IFormValues>;
+};
 
 export type PropsFormType = {
   label?: string;
@@ -15,6 +34,7 @@ export type PropsFormType = {
   birthday?: string;
   file?: string;
   scill?: string;
+  scills?: string;
   city?: string;
   HTML?: string;
   CSS?: string;
@@ -43,32 +63,5 @@ export interface DataArray {
   birthday?: string;
   avatar?: string;
   select?: string;
-  html?: string;
-  css?: string;
-  js?: string;
-  react?: string;
-  radio?: boolean;
+  scills?: string;
 }
-
-export type State = {
-  isValidate?: boolean;
-  isHidden?: boolean;
-  nameError?: string;
-  surNameError?: string;
-  birthError?: string;
-  fileError?: string;
-  selectError?: string;
-  checkboxError?: string;
-  radioError?: string;
-  // nameValid?: boolean;
-  // surNameValid?: boolean;
-  // dataValid?: boolean;
-  // inputError?: string;
-  // fileValid?: boolean;
-  // selectValid?: boolean;
-  // htmlValid?: boolean;
-  // cssValid?: boolean;
-  // jstValid?: boolean;
-  // reacttValid?: boolean;
-  // radioValid?: boolean;
-};

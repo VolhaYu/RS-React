@@ -1,41 +1,20 @@
-import React, { createRef } from 'react';
-import { PropsFormType } from '../../types';
+import React from 'react';
+import { InputProps } from '../../types';
 
-class InputFile extends React.Component<PropsFormType> {
-  private fileRef = createRef<HTMLInputElement>();
-
-  constructor(props: PropsFormType) {
-    super(props);
-    this.hendleInput = this.hendleInput.bind(this);
-  }
-
-  hendleInput() {
-    let fileInput;
-    if (this.fileRef.current?.files?.length) {
-      fileInput = URL.createObjectURL(this.fileRef.current?.files[0]);
-    }
-    return fileInput;
-  }
-
-  render() {
-    const { error } = this.props;
-    return (
-      <div className="wrap-input">
-        <label>
-          Avatar:
-          <input
-            type="file"
-            name="file"
-            className="input"
-            accept="image/png, image/jpeg"
-            ref={this.fileRef}
-            // required
-          />
-        </label>
-        <span className="error">{error}</span>
-      </div>
-    );
-  }
+function InputFile({ label, register, errors }: InputProps) {
+  return (
+    <div className="wrap-input">
+      <label>
+        {label}
+        <input
+          type="file"
+          className="input"
+          accept="image/png, image/jpeg"
+          {...register(label, { required: 'Choose File!' })}
+        />
+      </label>
+      {errors?.Avatar && <div className="error">{errors.Avatar.message}</div>}
+    </div>
+  );
 }
-
 export default InputFile;
