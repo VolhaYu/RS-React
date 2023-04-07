@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Card from './card';
 import './cards.css';
 import products from '../../assets/productsData';
-// import { Products } from '../../types';
 
 function Cards() {
   const [cardsInfo] = useState(products);

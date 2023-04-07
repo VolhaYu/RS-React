@@ -5,9 +5,9 @@ text-align: center;
 .form__button {
   width: 40%;
   height: 30px;
-  border-color: rgb(107, 102, 102);
   border-radius: 10px;
   margin-right: 10px;
+  border: none;
 }
 .form__button {
   width: 10%;
