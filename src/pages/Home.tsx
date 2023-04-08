@@ -1,7 +1,7 @@
 import React from 'react';
 import ApiCards from '../components/ApiCards/apiCards';
-import SearchBar from '../components/SearchBar/SearchBar';
-import Cards from '../components/cardsComponents/Cards';
+// import SearchBar from '../components/SearchBar/SearchBar';
+// import Cards from '../components/cardsComponents/Cards';
 
 function Home() {
   return (

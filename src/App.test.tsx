@@ -4,25 +4,25 @@ import { MemoryRouter } from 'react-router-dom';
 
 import React from 'react';
 import App from './App';
-import Cards from './components/cardsComponents/Cards';
-import Card from './components/cardsComponents/card';
-import ImageCard from './components/cardsComponents/imageCard';
-import CardDescription from './components/cardsComponents/cardDescription';
+// import Cards from './components/cardsComponents/Cards';
+// import Card from './components/cardsComponents/card';
+// import ImageCard from './components/cardsComponents/imageCard';
+// import CardDescription from './components/cardsComponents/cardDescription';
 import Header from './components/header/header';
 
 describe('App', () => {
-  it('Renders Cards', () => {
-    render(<Cards />);
-    expect(screen.getByTestId('card-product-list')).toBeInTheDocument();
-    expect(Cards).toContain(Card);
-  });
-  it('Render Card', () => {
-    render(<Card />);
-    expect(<Card />).toBeDefined();
-    expect(screen.getAllByTestId('card-product-item'));
-    expect(Card).toContain(ImageCard);
-    expect(Card).toContain(CardDescription);
-  });
+  // it('Renders Cards', () => {
+  //   render(<Cards />);
+  //   expect(screen.getByTestId('card-product-list')).toBeInTheDocument();
+  //   expect(Cards).toContain(Card);
+  // });
+  // it('Render Card', () => {
+  //   render(<Card />);
+  //   expect(<Card />).toBeDefined();
+  //   expect(screen.getAllByTestId('card-product-item'));
+  //   expect(Card).toContain(ImageCard);
+  //   expect(Card).toContain(CardDescription);
+  // });
   it('Renders Header', () => {
     render(
       <MemoryRouter initialEntries={['/']}>

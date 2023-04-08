@@ -30,6 +30,7 @@ function PopUp({ valueId, closePopUp }: Id) {
         setIsPending(false);
       });
   }, [valueId]);
+  console.log('popUpData', popUpData);
 
   return (
     <>
@@ -42,15 +43,15 @@ function PopUp({ valueId, closePopUp }: Id) {
               <span className="close-line line1" />
               <span className="close-line line2" />
             </div>
-            <p className="info-text">{popUpData.name}</p>
-            <p className="info-text">{popUpData.species}</p>
-            <p className="info-text">{popUpData.status}</p>
-            <p className="info-text">{popUpData.gender}</p>
-            {/* <ul className="episode">
-          {episode.map((item, ind) => (
-            <li key={ind}>{item}</li>
-          ))}
-        </ul> */}
+            <img src={popUpData.image} alt="avatar" />
+            <div className="wrap-info">
+              <p className="info-text">Name: {popUpData.name}</p>
+              <p className="info-text">Species: {popUpData.species}</p>
+              <p className="info-text">Status: {popUpData.status}</p>
+              <p className="info-text">Gender: {popUpData.gender}</p>
+              <p className="info-text">Location: {popUpData.location?.name}</p>
+              <p className="info-text">Episode: {popUpData.episode?.length}</p>
+            </div>
           </div>
         </div>
       )}
