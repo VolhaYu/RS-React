@@ -1,4 +1,4 @@
-export const baseUrl = 'https://rickandmortyapi.com/api';
+export const baseUrl = 'https://rickandmortyapi.com/api/character';
 
 export const path = {
   character: '/character',

@@ -5,7 +5,9 @@ import { Result } from './api';
 import PopUp from './popUp';
 
 function ApiCards() {
-  const [result, setResult] = useState<[Result]>();
+  const [result, setResult] = useState<[Result]>(
+    JSON.parse(localStorage.getItem('resultData') || '')
+  );
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [isPopUp, setIsPopUp] = useState(false);
@@ -20,7 +22,10 @@ function ApiCards() {
         return res.json();
       })
       .then((data) => {
-        setResult(data.results);
+        if (!result) {
+          setResult(data.results);
+          localStorage.setItem('resultData', JSON.stringify(data));
+        }
         setIsPending(false);
         setError(null);
       })
@@ -38,9 +43,13 @@ function ApiCards() {
   const closePopUp = () => {
     setIsPopUp(false);
   };
+  const newResult = (data: [Result]) => {
+    setResult(data);
+    localStorage.setItem('resultData', JSON.stringify(data));
+  };
   return (
     <>
-      <SearchBar />
+      <SearchBar newResult={newResult} />
       {isPending && <div className="loading">Loading...</div>}
       {error && <div className="error">{error}</div>}
       <div className="wrap-cards" data-testid="card-product-list">
