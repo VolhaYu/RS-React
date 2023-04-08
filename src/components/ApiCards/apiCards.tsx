@@ -6,7 +6,7 @@ import PopUp from './popUp';
 
 function ApiCards() {
   const [result, setResult] = useState<[Result]>(
-    JSON.parse(localStorage.getItem('resultData') || '')
+    JSON.parse(`${localStorage.getItem('resultData')}`)
   );
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
@@ -24,7 +24,7 @@ function ApiCards() {
       .then((data) => {
         if (!result) {
           setResult(data.results);
-          localStorage.setItem('resultData', JSON.stringify(data));
+          localStorage.setItem('resultData', JSON.stringify(data.results));
         }
         setIsPending(false);
         setError(null);
@@ -33,7 +33,7 @@ function ApiCards() {
         setError(err.message);
         setIsPending(false);
       });
-  }, []);
+  }, [result]);
 
   const onClick = (e: React.SyntheticEvent<HTMLImageElement>) => {
     setIsPopUp(true);
@@ -47,13 +47,19 @@ function ApiCards() {
     setResult(data);
     localStorage.setItem('resultData', JSON.stringify(data));
   };
+
+  const errMessage = (value: React.SetStateAction<null>) => {
+    setError(value);
+  };
+
   return (
     <>
-      <SearchBar newResult={newResult} />
+      <SearchBar newResult={newResult} errMessage={errMessage} />
       {isPending && <div className="loading">Loading...</div>}
       {error && <div className="error">{error}</div>}
       <div className="wrap-cards" data-testid="card-product-list">
         {result &&
+          !error &&
           result.map((data: Result) => (
             <div className="card" key={data.id}>
               <h3 className="h3">{data.name} </h3>

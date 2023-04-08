@@ -12,9 +12,10 @@ const filterParams = {
 
 type Props = {
   newResult: (data: [Result]) => void;
+  errMessage: (value: React.SetStateAction<null>) => void;
 };
 
-function SearchBar({ newResult }: Props) {
+function SearchBar({ newResult, errMessage }: Props) {
   const [searcValue, setSearcValue] = useState<string>(localStorage.getItem('inputValue') || '');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -25,16 +26,23 @@ function SearchBar({ newResult }: Props) {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-    try {
-      const response = await fetch(`${baseUrl}?${filterParams.name}${searcValue}`);
-      const data = await response.json();
-
-      newResult(data.results);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
+    await fetch(`${baseUrl}?${filterParams.name}${searcValue}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw Error('Search by name only! Enter correct data!');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        newResult(data.results);
+        errMessage(null);
+      })
+      .catch((err) => {
+        errMessage(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
