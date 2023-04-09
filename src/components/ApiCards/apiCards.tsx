@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import './apiCards.css';
-import { Result } from './api';
+import { Result, baseUrl } from './api';
 import PopUp from './popUp';
 
 function ApiCards() {
@@ -14,10 +14,10 @@ function ApiCards() {
   const [popUpValue, setPopUpValue] = useState<string>();
 
   useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character')
+    fetch(`${baseUrl}`)
       .then((res) => {
         if (!res.ok) {
-          throw Error('could not fetch the data for that resours');
+          throw Error('Сould not fetch the data for that resours');
         }
         return res.json();
       })

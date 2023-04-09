@@ -1,7 +1,13 @@
 import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
+import { Result } from './components/ApiCards/api';
 
 export type PageState = {
   page: string;
+};
+
+export type Props = {
+  newResult: (data: [Result]) => void;
+  errMessage: (value: React.SetStateAction<null>) => void;
 };
 
 export interface IFormValues {
@@ -44,19 +50,6 @@ export type PropsFormType = {
   id?: string;
 };
 
-export interface Products {
-  id?: number;
-  title?: string;
-  description?: string;
-  price?: number;
-  discountPercentage?: number;
-  rating?: number;
-  stock?: number;
-  brand?: string;
-  category?: string;
-  thumbnail?: string;
-  images?: string[];
-}
 export interface DataArray {
   nameFirst?: string;
   nameLast?: string;

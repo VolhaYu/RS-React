@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Result } from './api';
+import { Result, baseUrl } from './api';
 import './popUp.css';
 
 type Id = {
@@ -13,7 +13,7 @@ function PopUp({ valueId, closePopUp }: Id) {
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${valueId}`)
+    fetch(`${baseUrl}/${valueId}`)
       .then((res) => {
         if (!res.ok) {
           throw Error('could not fetch the data for that resours');
@@ -30,7 +30,6 @@ function PopUp({ valueId, closePopUp }: Id) {
         setIsPending(false);
       });
   }, [valueId]);
-  console.log('popUpData', popUpData);
 
   return (
     <>

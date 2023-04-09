@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './searchBar.css';
-import { Result, baseUrl } from '../ApiCards/api';
+import { baseUrl } from '../ApiCards/api';
+import { Props } from '../../types';
 
 const filterParams = {
   name: 'name=',
@@ -8,11 +9,6 @@ const filterParams = {
   species: 'species=',
   type: 'type=',
   gender: 'gender=',
-};
-
-type Props = {
-  newResult: (data: [Result]) => void;
-  errMessage: (value: React.SetStateAction<null>) => void;
 };
 
 function SearchBar({ newResult, errMessage }: Props) {
