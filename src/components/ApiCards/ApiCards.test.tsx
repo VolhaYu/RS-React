@@ -1,7 +1,5 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { handlers } from 'mocks/handers';
 
 import React from 'react';
 import ApiCards from './apiCards';
@@ -13,5 +11,11 @@ describe('Cards', () => {
     expect(screen.getByTestId('card-product-list')).toBeInTheDocument();
     expect(screen.queryByText('Сould not fetch the data for that resours')).not.toBeInTheDocument();
     expect(screen.queryByText('Loading...')).toBeInTheDocument();
+  });
+  it('Render SearcBar', () => {
+    render(<SearchBar newResult={() => {}} errMessage={() => {}} />);
+    expect(<SearchBar newResult={() => {}} errMessage={() => {}} />).toBeDefined();
+    expect(screen.getByRole('button')).toBeDefined();
+    expect(screen.getByRole('textbox')).toBeDefined();
   });
 });

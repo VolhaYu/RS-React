@@ -5,8 +5,6 @@ import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 import App from './App';
 import Header from './components/header/header';
-import ApiCards from './components/ApiCards/apiCards';
-import SearchBar from './components/SearchBar/SearchBar';
 
 describe('App', () => {
   it('Renders Header', () => {
