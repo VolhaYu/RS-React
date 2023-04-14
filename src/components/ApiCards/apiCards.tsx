@@ -3,37 +3,14 @@ import SearchBar from '../SearchBar/SearchBar';
 import './apiCards.css';
 import { Result, baseUrl } from './api';
 import PopUp from './popUp';
+import { cardApi, useGetAllCardsQuery } from '../../redux/servises/cardServise';
 
 function ApiCards() {
-  const [result, setResult] = useState<[Result]>(
-    JSON.parse(`${localStorage.getItem('resultData')}`)
-  );
-  const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
-  const [isPopUp, setIsPopUp] = useState(false);
-  const [popUpValue, setPopUpValue] = useState<string>();
+  const [searchValue, setSearcValue] = useState('');
+  const [popUpValue, setPopUpValue] = useState<string>('');
+  const { data: result, error, isLoading } = useGetAllCardsQuery(searchValue);
 
-  useEffect(() => {
-    fetch(`${baseUrl}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw Error('Сould not fetch the data for that resours');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (!result) {
-          setResult(data.results);
-          localStorage.setItem('resultData', JSON.stringify(data.results));
-        }
-        setIsPending(false);
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIsPending(false);
-      });
-  }, [result]);
+  const [isPopUp, setIsPopUp] = useState(false);
 
   const onClick = (e: React.SyntheticEvent<HTMLImageElement>) => {
     setIsPopUp(true);
@@ -43,24 +20,19 @@ function ApiCards() {
   const closePopUp = () => {
     setIsPopUp(false);
   };
-  const newResult = (data: [Result]) => {
-    setResult(data);
-    localStorage.setItem('resultData', JSON.stringify(data));
-  };
 
-  const errMessage = (value: React.SetStateAction<null>) => {
-    setError(value);
+  const newResult = (data: string) => {
+    setSearcValue(data);
   };
 
   return (
     <>
-      <SearchBar newResult={newResult} errMessage={errMessage} />
-      {isPending && <div className="loading">Loading...</div>}
-      {error && <div className="error">{error}</div>}
+      <SearchBar newResult={newResult} />
+      {isLoading && <h1 className="loading">Loading...</h1>}
+      {error && <div className="error">Сould not fetch the data for that resours</div>}
       <div className="wrap-cards" data-testid="card-product-list">
         {result &&
-          !error &&
-          result.map((data: Result) => (
+          result.results.map((data: Result) => (
             <div className="card" key={data.id}>
               <h3 className="h3">{data.name} </h3>
               <img

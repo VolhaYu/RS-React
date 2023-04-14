@@ -6,8 +6,7 @@ export type PageState = {
 };
 
 export type Props = {
-  newResult: (data: [Result]) => void;
-  errMessage: (value: React.SetStateAction<null>) => void;
+  newResult: (data: string) => void;
 };
 
 export interface IFormValues {
