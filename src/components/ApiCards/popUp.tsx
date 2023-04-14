@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Id } from 'types';
 import { useGetPopUpQuery } from '../../redux/servises/cardServise';
-import { Result, baseUrl } from './api';
 import './popUp.css';
-
-type Id = {
-  valueId: number;
-  closePopUp: () => void;
-};
 
 function PopUp({ valueId, closePopUp }: Id) {
   const { data: result, error, isLoading } = useGetPopUpQuery(String(valueId));

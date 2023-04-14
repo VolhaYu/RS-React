@@ -13,8 +13,8 @@ describe('Cards', () => {
     expect(screen.queryByText('Loading...')).toBeInTheDocument();
   });
   it('Render SearcBar', () => {
-    render(<SearchBar newResult={() => {}} errMessage={() => {}} />);
-    expect(<SearchBar newResult={() => {}} errMessage={() => {}} />).toBeDefined();
+    render(<SearchBar newResult={() => {}} />);
+    expect(<SearchBar newResult={() => {}} />).toBeDefined();
     expect(screen.getByRole('button')).toBeDefined();
     expect(screen.getByRole('textbox')).toBeDefined();
   });

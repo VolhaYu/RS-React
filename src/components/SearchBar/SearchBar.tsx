@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../redux/store/hooksRedux';
 import './searchBar.css';
+import { addSearchValue } from '../../redux/store/reducers/reducers';
 import { Props } from '../../types';
+import { AppDispatch } from '../../redux/store/store';
 
 function SearchBar({ newResult }: Props) {
-  const [searcValue, setSearcValue] = useState<string>('');
-  // const [searcValue, setSearcValue] = useState<string>(localStorage.getItem('inputValue') || '');
-
-  // useEffect(() => {
-  //   localStorage.setItem('inputValue', searcValue);
-  // }, [searcValue]);
+  const searchVal = useAppSelector((state) => state.reducerForm.searcValue);
+  const [searcValue, setSearcValue] = useState<string>(searchVal);
+  const dispatch = useDispatch<AppDispatch>();
+  console.log(searchVal);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearcValue(event.target.value);
@@ -17,7 +19,8 @@ function SearchBar({ newResult }: Props) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     newResult(searcValue);
-    // console.log(searcValue);
+    dispatch(addSearchValue(searcValue));
+    console.log(searchVal);
   }
 
   return (

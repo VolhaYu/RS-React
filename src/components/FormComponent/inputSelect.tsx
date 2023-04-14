@@ -14,7 +14,7 @@ function InputSelect({ label, register, errors }: InputProps) {
           <option value="St.Petersburg">St.Petersburg</option>
         </select>
       </label>
-      {errors?.City && <div className="error">{errors.City.message}</div>}
+      {errors?.City && <div className="error-form">{errors.City.message}</div>}
     </div>
   );
 }

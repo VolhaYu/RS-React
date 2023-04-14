@@ -1,5 +1,3 @@
-export const baseUrl = 'https://rickandmortyapi.com/api/character';
-
 export interface Result {
   id?: number;
   name: string;

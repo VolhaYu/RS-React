@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { DataResult, Result } from '../../components/ApiCards/api';
 
 export const cardApi = createApi({
@@ -20,4 +19,3 @@ export const cardApi = createApi({
 });
 
 export const { useGetAllCardsQuery, useGetPopUpQuery } = cardApi;
-// export default cardApi;

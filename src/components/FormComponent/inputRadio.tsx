@@ -12,7 +12,7 @@ function InputRadio({ label, register, errors }: InputProps) {
           {...register(label, { required: 'We must agree!' })}
         />
       </label>
-      {errors?.radio && <div className="error">{errors.radio.message}</div>}
+      {errors?.radio && <div className="error-form">{errors.radio.message}</div>}
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
-import { Result } from './components/ApiCards/api';
 
 export type PageState = {
   page: string;
@@ -9,6 +8,19 @@ export type Props = {
   newResult: (data: string) => void;
 };
 
+export type Id = {
+  valueId: number;
+  closePopUp: () => void;
+};
+
+export type DataList = {
+  nameFirst: string;
+  nameLast: string;
+  birthday: string;
+  avatar: string;
+  select: string;
+  scills: string;
+};
 export interface IFormValues {
   'First Name': string;
   'Last Name': string;

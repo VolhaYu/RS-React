@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../redux/store/hooksRedux';
+import { addResultSearch } from '../../redux/store/reducers/reducers';
+import { AppDispatch } from '../../redux/store/store';
 import SearchBar from '../SearchBar/SearchBar';
 import './apiCards.css';
-import { Result, baseUrl } from './api';
+import { Result } from './api';
 import PopUp from './popUp';
-import { cardApi, useGetAllCardsQuery } from '../../redux/servises/cardServise';
+import { useGetAllCardsQuery } from '../../redux/servises/cardServise';
 
 function ApiCards() {
   const [searchValue, setSearcValue] = useState('');
   const [popUpValue, setPopUpValue] = useState<string>('');
+
   const { data: result, error, isLoading } = useGetAllCardsQuery(searchValue);
 
   const [isPopUp, setIsPopUp] = useState(false);

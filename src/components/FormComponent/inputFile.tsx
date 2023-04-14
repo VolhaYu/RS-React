@@ -13,7 +13,7 @@ function InputFile({ label, register, errors }: InputProps) {
           {...register(label, { required: 'Choose File!' })}
         />
       </label>
-      {errors?.Avatar && <div className="error">{errors.Avatar.message}</div>}
+      {errors?.Avatar && <div className="error-form">{errors.Avatar.message}</div>}
     </div>
   );
 }

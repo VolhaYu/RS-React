@@ -14,7 +14,7 @@ export const setypStore = () => {
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cardApi.middleware),
   });
 };
-const store = setypStore();
+export const store = setypStore();
 
 setupListeners(store.dispatch);
 

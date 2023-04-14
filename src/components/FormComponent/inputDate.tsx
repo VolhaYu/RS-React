@@ -14,7 +14,9 @@ function InputDate({ label, register, errors }: InputProps) {
           })}
         />
       </label>
-      {errors?.['Birthday date'] && <div className="error">{errors['Birthday date'].message}</div>}
+      {errors?.['Birthday date'] && (
+        <div className="error-form">{errors['Birthday date'].message}</div>
+      )}
     </div>
   );
 }
