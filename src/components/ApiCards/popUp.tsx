@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useGetPopUpQuery } from '../../redux/servises/cardServise';
 import { Result, baseUrl } from './api';
 import './popUp.css';
 
@@ -8,48 +9,27 @@ type Id = {
 };
 
 function PopUp({ valueId, closePopUp }: Id) {
-  const [popUpData, setPopUpData] = useState<Result>();
-  const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(true);
-
-  useEffect(() => {
-    fetch(`${baseUrl}/${valueId}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw Error('could not fetch the data for that resours');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setPopUpData(data);
-        setIsPending(false);
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIsPending(false);
-      });
-  }, [valueId]);
+  const { data: result, error, isLoading } = useGetPopUpQuery(String(valueId));
 
   return (
     <>
-      {isPending && <div className="loading">Loading...</div>}
-      {error && <div className="error">{error}</div>}
-      {popUpData && (
+      {isLoading && <div className="loading">Loading...</div>}
+      {error && <div className="error">error!!</div>}
+      {result && (
         <div className="pop-up" onClick={closePopUp}>
           <div className="pop-up__content">
             <div className="window-close" onClick={closePopUp}>
               <span className="close-line line1" />
               <span className="close-line line2" />
             </div>
-            <img src={popUpData.image} alt="avatar" />
+            <img src={result.image} alt="avatar" />
             <div className="wrap-info">
-              <p className="info-text">Name: {popUpData.name}</p>
-              <p className="info-text">Species: {popUpData.species}</p>
-              <p className="info-text">Status: {popUpData.status}</p>
-              <p className="info-text">Gender: {popUpData.gender}</p>
-              <p className="info-text">Location: {popUpData.location?.name}</p>
-              <p className="info-text">Episode: {popUpData.episode?.length}</p>
+              <p className="info-text">Name: {result.name}</p>
+              <p className="info-text">Species: {result.species}</p>
+              <p className="info-text">Status: {result.status}</p>
+              <p className="info-text">Gender: {result.gender}</p>
+              <p className="info-text">Location: {result.location?.name}</p>
+              <p className="info-text">Episode: {result.episode?.length}</p>
             </div>
           </div>
         </div>

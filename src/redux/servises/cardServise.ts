@@ -7,12 +7,17 @@ export const cardApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://rickandmortyapi.com/api' }),
   endpoints: (build) => ({
     getAllCards: build.query<DataResult, string>({
-      query: (searchValue = '', valueId = '') => ({
-        url: `/character${valueId && `/${valueId}`}?${searchValue && `name=${searchValue}`}`,
+      query: (searchValue = '') => ({
+        url: `/character?${searchValue && `name=${searchValue}`}`,
+      }),
+    }),
+    getPopUp: build.query<Result, string>({
+      query: (valueId = '') => ({
+        url: `/character${valueId && `/${valueId}`}`,
       }),
     }),
   }),
 });
 
-export const { useGetAllCardsQuery } = cardApi;
+export const { useGetAllCardsQuery, useGetPopUpQuery } = cardApi;
 // export default cardApi;
