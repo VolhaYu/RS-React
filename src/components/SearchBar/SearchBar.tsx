@@ -10,7 +10,6 @@ function SearchBar({ newResult }: Props) {
   const searchVal = useAppSelector((state) => state.reducerForm.searcValue);
   const [searcValue, setSearcValue] = useState<string>(searchVal);
   const dispatch = useDispatch<AppDispatch>();
-  console.log(searchVal);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearcValue(event.target.value);
@@ -20,7 +19,6 @@ function SearchBar({ newResult }: Props) {
     e.preventDefault();
     newResult(searcValue);
     dispatch(addSearchValue(searcValue));
-    console.log(searchVal);
   }
 
   return (
