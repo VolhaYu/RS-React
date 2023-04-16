@@ -32,7 +32,7 @@ function ApiCards() {
   return (
     <>
       <SearchBar newResult={newResult} />
-      {isLoading && <h1 className="loading">Loading...</h1>}
+      {isLoading && <h2 className="loading">Loading...</h2>}
       {error && <div className="error">Сould not fetch the data for that resours</div>}
       <div className="wrap-cards" data-testid="card-product-list">
         {result &&
@@ -41,6 +41,7 @@ function ApiCards() {
               <h3 className="h3">{data.name} </h3>
               <img
                 className="avatar"
+                data-testid={data.id}
                 id={String(data.id)}
                 src={data.image}
                 alt="avatar"

@@ -4,6 +4,9 @@ import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 
 import React from 'react';
+// import { render, fireEvent } from '../test-utils';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store/store';
 import FormsPage from '../../pages/Forms';
 import Header from '../header/header';
 import Form from './form';
@@ -26,9 +29,11 @@ function setup(tsx: JSX.Element) {
 describe('Form', () => {
   it('Renders Form Pages', () => {
     render(
-      <MemoryRouter initialEntries={['/form']}>
-        <FormsPage />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/form']}>
+          <FormsPage />
+        </MemoryRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {
@@ -38,7 +43,11 @@ describe('Form', () => {
     expect(FormsPage).toContain(Header);
   });
   it('Render Inputs', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(Form).toContain(InputText);
     expect(Form).toContain(InputDate);
     expect(Form).toContain(InputFile);
@@ -47,7 +56,11 @@ describe('Form', () => {
     expect(Form).toContain(InputRadio);
   });
   it('Render Card and message', async () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(screen.getByLabelText('First Name')).toBeInTheDocument();
     expect(screen.getByLabelText('Last Name')).toBeInTheDocument();
     expect(screen.getByLabelText('Birthday date')).toBeInTheDocument();
@@ -60,14 +73,21 @@ describe('Form', () => {
     expect(screen.getByLabelText('I agree to the processing of data:')).toBeInTheDocument();
   });
   it('display cards after onSubmit', async () => {
-    const { user } = setup(<Form />);
-
+    const { user } = setup(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     await user.click(screen.getByRole('button'));
     expect(Form).toContain(CardsData);
     expect(Form).toContain(Message);
   });
   it('Renders cards in form', () => {
-    render(<CardsData />);
+    render(
+      <Provider store={store}>
+        <CardsData />
+      </Provider>
+    );
     expect(
       screen.getByRole('heading', {
         level: 2,
