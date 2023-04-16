@@ -11,7 +11,7 @@ function CardsData() {
   return (
     <>
       <h2>Cards:</h2>
-      <div className="wrap-card">
+      <div className="wrap-card" data-testid="wrap-card">
         {dataArr &&
           dataArr.map((data, ind) => {
             return (

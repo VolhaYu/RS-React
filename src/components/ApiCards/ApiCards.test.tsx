@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import React from 'react';
@@ -39,6 +39,13 @@ describe('Cards', () => {
     expect(screen.queryByText('error!!')).not.toBeInTheDocument();
     expect(screen.queryByText('Loading...')).toBeInTheDocument();
     expect(await screen.findByRole('img')).toBeInTheDocument();
+    expect(await screen.findByTestId('window-close')).toBeInTheDocument();
+    expect(await screen.findByText(/Name:/)).toBeInTheDocument();
+    expect(await screen.findByText(/Species:/)).toBeInTheDocument();
+    expect(await screen.findByText(/Status:/)).toBeInTheDocument();
+    expect(await screen.findByText(/Gender:/)).toBeInTheDocument();
+    expect(await screen.findByText(/Location:/)).toBeInTheDocument();
+    expect(await screen.findByText(/Episode:/)).toBeInTheDocument();
   });
   it('open popUp', async () => {
     render(
@@ -48,5 +55,27 @@ describe('Cards', () => {
     );
     userEvent.click(await screen.findByTestId('1'));
     expect(ApiCards).toContain(PopUp);
+    expect(await screen.findByText('Name: Rick Sanchez')).toBeInTheDocument();
+    expect(await screen.findByText('Species: Human')).toBeInTheDocument();
+    expect(await screen.findByText('Status: Alive')).toBeInTheDocument();
+    expect(await screen.findByText('Gender: Male')).toBeInTheDocument();
+    expect(await screen.findByText('Location: Citadel of Ricks')).toBeInTheDocument();
+    expect(await screen.findByText('Episode: 51')).toBeInTheDocument();
+  });
+  it('closepopUp', async () => {
+    render(
+      <Provider store={store}>
+        <PopUp valueId={1} closePopUp={() => {}} />
+      </Provider>
+    );
+    userEvent.click(await screen.findByTestId('window-close'));
+    waitFor(() => expect(screen.queryByRole('img')).not.toBeInTheDocument());
+    expect(screen.queryByTestId('window-close')).toBeInTheDocument();
+    expect(screen.queryByText(/Name:/)).toBeInTheDocument();
+    expect(screen.queryByText(/Species:/)).toBeInTheDocument();
+    expect(screen.queryByText(/Status:/)).toBeInTheDocument();
+    expect(screen.queryByText(/Gender:/)).toBeInTheDocument();
+    expect(screen.queryByText(/Location:/)).toBeInTheDocument();
+    expect(screen.queryByText(/Episode:/)).toBeInTheDocument();
   });
 });

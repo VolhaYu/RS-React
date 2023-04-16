@@ -1,10 +1,9 @@
 import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 
 import React from 'react';
-// import { render, fireEvent } from '../test-utils';
 import { Provider } from 'react-redux';
 import { store } from '../../redux/store/store';
 import FormsPage from '../../pages/Forms';
@@ -93,5 +92,37 @@ describe('Form', () => {
         level: 2,
       })
     ).toHaveTextContent('Cards');
+    expect(screen.getByTestId('wrap-card')).toBeInTheDocument();
+  });
+  it('Renders cards', () => {
+    render(
+      <Provider store={store}>
+        <div className="wrap-card" data-testid="wrap-card" />
+      </Provider>
+    );
+    waitFor(() => expect(screen.getByText(/Birthday:/)).toBeInTheDocument());
+    waitFor(() => expect(screen.getByText(/City:/)).toBeInTheDocument());
+    waitFor(() => expect(screen.getByRole('img')).toBeInTheDocument());
+    waitFor(() =>
+      expect(
+        screen.getByRole('heading', {
+          level: 3,
+        })
+      ).toHaveTextContent('Scills:')
+    );
+  });
+  it('Error elements', () => {
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
+    waitFor(() => expect(screen.queryAllByText('Fill in the field!')).not.toBeInTheDocument());
+    waitFor(() => expect(screen.queryAllByText('Choose File!')).not.toBeInTheDocument());
+    waitFor(() => expect(screen.queryAllByText('Choose city!')).not.toBeInTheDocument());
+    waitFor(() =>
+      expect(screen.queryAllByText('Choose at least one option')).not.toBeInTheDocument()
+    );
+    waitFor(() => expect(screen.queryAllByText('We must agree!')).not.toBeInTheDocument());
   });
 });

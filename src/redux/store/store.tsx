@@ -3,7 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import reducerForm from './reducers/reducers';
 import { cardApi } from '../servises/cardServise';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   reducerForm,
   [cardApi.reducerPath]: cardApi.reducer,
 });

@@ -13,7 +13,7 @@ function PopUp({ valueId, closePopUp }: Id) {
       {result && (
         <div className="pop-up" onClick={closePopUp}>
           <div className="pop-up__content">
-            <div className="window-close" onClick={closePopUp}>
+            <div className="window-close" data-testid="window-close" onClick={closePopUp}>
               <span className="close-line line1" />
               <span className="close-line line2" />
             </div>

@@ -6,7 +6,7 @@ interface CardState {
   cards: DataList[];
   searcValue: string;
 }
-const initialState: CardState = {
+export const initialState: CardState = {
   cards: [],
   searcValue: '',
 };

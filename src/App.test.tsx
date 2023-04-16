@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { HashRouter, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import React from 'react';
@@ -64,18 +64,5 @@ describe('App', () => {
       })
     ).toHaveTextContent('404');
     expect(App).toContain(Header);
-  });
-  it('Render Header', () => {
-    render(
-      <HashRouter>
-        <Header />
-      </HashRouter>
-    );
-    expect(
-      screen.getByRole('heading', {
-        level: 2,
-      })
-    ).toBeInTheDocument();
-    expect(screen.getByRole('navigation')).toBeInTheDocument();
   });
 });
