@@ -1,0 +1,38 @@
+.form-component {
+  padding: 5px;
+}
+.input {
+  display: block;
+  margin: 5px;
+  height: 25px;
+  border-radius: 10px;
+  border: none;
+}
+.input-checkbox {
+  display: inline;
+}
+.h3 {
+  margin: 10px 0 0;
+}
+.label-checkbox,
+.label {
+  display: block;
+}
+
+.error-form {
+  color: red;
+  margin-left: 10px;
+}
+
+.button {
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  margin: 15px 0 0 10px;
+  background-color: gray;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
