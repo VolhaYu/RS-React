@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
 import * as toolkitRaw from '@reduxjs/toolkit';
-// import { PayloadAction } from '@reduxjs/toolkit';
 import { DataList } from '../../../types';
 
 const { createSlice } = ((toolkitRaw as any).default ?? toolkitRaw) as typeof toolkitRaw;

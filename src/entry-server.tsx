@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
@@ -25,5 +24,3 @@ export function render(
   );
   return stream;
 }
-
-// export default render;

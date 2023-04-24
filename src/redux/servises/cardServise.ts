@@ -1,8 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as rtkQueryReact from '@reduxjs/toolkit/dist/query/react/index.js';
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { DataResult, Result } from '../../components/ApiCards/api';
+import { DataResult, Result } from '../../types';
 
 const { createApi, fetchBaseQuery } = ((rtkQueryReact as any).default ??
   rtkQueryReact) as typeof rtkQueryReact;

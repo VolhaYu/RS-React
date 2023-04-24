@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppSelector } from '../../redux/store/hooksRedux';
 import SearchBar from '../SearchBar/SearchBar';
 import './apiCards.css';
-import { Result } from './api';
+import { Result } from '../../types';
 import PopUp from './popUp';
 import { useGetAllCardsQuery } from '../../redux/servises/cardServise';
 

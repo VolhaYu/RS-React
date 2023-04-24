@@ -45,6 +45,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/naming-convention': 'off',
     'no-underscore-dangle': 'off',
+    'import/prefer-default-export': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/prefer-stateless-function': 0,
