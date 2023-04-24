@@ -36,6 +36,7 @@ function ApiCards() {
       {error && <div className="error">Сould not fetch the data for that resours</div>}
       <div className="wrap-cards" data-testid="card-product-list">
         {result &&
+          !error &&
           result.results.map((data: Result) => (
             <div className="card" key={data.id}>
               <h3 className="h3">{data.name} </h3>

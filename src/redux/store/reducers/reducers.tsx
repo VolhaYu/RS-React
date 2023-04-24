@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import * as toolkitRaw from '@reduxjs/toolkit';
+// import { PayloadAction } from '@reduxjs/toolkit';
 import { DataList } from '../../../types';
+
+const { createSlice } = ((toolkitRaw as any).default ?? toolkitRaw) as typeof toolkitRaw;
 
 interface CardState {
   cards: DataList[];
@@ -17,7 +21,7 @@ const reducerForm = createSlice({
     addCard(state, action) {
       state.cards.push(action.payload);
     },
-    addSearchValue(state, action: PayloadAction<string>) {
+    addSearchValue(state, action) {
       state.searcValue = action.payload;
     },
   },

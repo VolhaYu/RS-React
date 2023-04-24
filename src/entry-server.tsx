@@ -1,5 +1,6 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { renderToPipeableStream } from 'react-dom/server';
+import { RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 import { Location } from 'react-router-dom';
@@ -8,8 +9,11 @@ import { setypStore } from './redux/store/store';
 
 const store = setypStore();
 
-function render(url: string | Partial<Location>, opts: object) {
-  const html = renderToPipeableStream(
+export function render(
+  url: string | Partial<Location>,
+  opts: RenderToPipeableStreamOptions | undefined
+) {
+  const stream = renderToPipeableStream(
     <React.StrictMode>
       <Provider store={store}>
         <StaticRouter location={url}>
@@ -19,7 +23,7 @@ function render(url: string | Partial<Location>, opts: object) {
     </React.StrictMode>,
     opts
   );
-  return { html };
+  return stream;
 }
 
-export default render;
+// export default render;

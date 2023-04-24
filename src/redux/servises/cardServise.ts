@@ -1,5 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+/* eslint-disable import/extensions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import * as rtkQueryReact from '@reduxjs/toolkit/dist/query/react/index.js';
+// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { DataResult, Result } from '../../components/ApiCards/api';
+
+const { createApi, fetchBaseQuery } = ((rtkQueryReact as any).default ??
+  rtkQueryReact) as typeof rtkQueryReact;
 
 export const cardApi = createApi({
   reducerPath: 'createApi',
