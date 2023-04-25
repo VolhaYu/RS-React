@@ -15,10 +15,14 @@
     "baseUrl": "./src",
     "resolveJsonModule": true
   },
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+  },
   "include": [
     "./src/**/*",
     ".eslintrc.cjs",
     "vite.config.ts",
     "styled.d.ts",
-    "./setupTest.ts", "server.js"]
+    "./setupTest.ts", "server.ts"]
 }
