@@ -1,0 +1,24 @@
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(84, 78, 78);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__h2 {
+  padding-left: 10px;
+}
+.wrap-links {
+  display: flex;
+  justify-content: end;
+}
+.link {
+  margin-right: 10px;
+  text-decoration: none;
+  color: white;
+}
+.active {
+  color:black;
+  text-decoration: underline;
+}
